@@ -1,0 +1,85 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Devices" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "Devices" %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "All" %} <span>{% trans "Devices" %}</span></h1>
+    <a href="{% url 'add_device' %}" class="btn btn-primary">➕ {% trans "Add Device" %}</a>
+</div>
+
+<!-- Filters -->
+<div class="card mb-16" style="padding: 16px;">
+    <form method="get" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
+        <div>
+            <label class="form-label">{% trans "Status" %}</label>
+            <select name="status" class="form-select" style="width: 150px;">
+                <option value="">{% trans "All" %}</option>
+                {% for val, label in status_choices %}
+                <option value="{{ val }}" {% if status_filter == val %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label class="form-label">{% trans "Type" %}</label>
+            <select name="type" class="form-select" style="width: 150px;">
+                <option value="">{% trans "All" %}</option>
+                {% for val, label in device_types %}
+                <option value="{{ val }}" {% if type_filter == val %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-secondary">🔍 {% trans "Filter" %}</button>
+        {% if status_filter or type_filter %}
+        <a href="{% url 'device_list' %}" class="btn btn-secondary">✕ {% trans "Clear" %}</a>
+        {% endif %}
+    </form>
+</div>
+
+{% if devices %}
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Type" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "Location" %}</th>
+                <th>{% trans "IP Address" %}</th>
+                <th>{% trans "Added" %}</th>
+                <th>{% trans "Actions" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for device in devices %}
+        <tr>
+            <td><a href="{% url 'device_detail' device.pk %}" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">{{ device.name }}</a></td>
+            <td>{{ device.get_device_type_display }}</td>
+            <td><span class="badge badge-{{ device.status }}">{{ device.get_status_display }}</span></td>
+            <td>{{ device.location|default:"—" }}</td>
+            <td class="text-mono">{{ device.ip_address|default:"—" }}</td>
+            <td class="text-mono text-muted">{{ device.created_at|date:"d/m/y" }}</td>
+            <td>
+                <div class="flex" style="gap: 6px;">
+                    <a href="{% url 'device_detail' device.pk %}" class="btn btn-secondary btn-sm">{% trans "View" %}</a>
+                    <a href="{% url 'edit_device' device.pk %}" class="btn btn-secondary btn-sm">✏</a>
+                    <a href="{% url 'delete_device' device.pk %}" class="btn btn-danger btn-sm">🗑</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="card">
+    <div class="empty-state">
+        <div class="empty-icon">📡</div>
+        <p>{% trans "No devices found." %}</p>
+        <a href="{% url 'add_device' %}" class="btn btn-primary mt-16">{% trans "Add your first device" %}</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

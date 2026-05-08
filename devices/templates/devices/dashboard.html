@@ -1,0 +1,134 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "Dashboard" %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "System" %} <span>{% trans "Overview" %}</span></h1>
+    <a href="{% url 'add_device' %}" class="btn btn-primary">➕ {% trans "Add Device" %}</a>
+</div>
+
+<!-- Stats -->
+<div class="stats-grid">
+    <div class="stat-card cyan">
+        <div class="stat-label">{% trans "Total Devices" %}</div>
+        <div class="stat-value">{{ total_devices }}</div>
+    </div>
+    <div class="stat-card green">
+        <div class="stat-label">{% trans "Online" %}</div>
+        <div class="stat-value">{{ online_count }}</div>
+    </div>
+    <div class="stat-card orange">
+        <div class="stat-label">{% trans "Errors" %}</div>
+        <div class="stat-value">{{ error_count }}</div>
+    </div>
+    <div class="stat-card purple">
+        <div class="stat-label">{% trans "AI Analyses" %}</div>
+        <div class="stat-value">{{ recent_analyses|length }}</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <!-- Recent Devices -->
+    <div class="card">
+        <div class="card-title">📡 {% trans "Recent Devices" %}</div>
+        {% if devices %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{% trans "Name" %}</th>
+                        <th>{% trans "Type" %}</th>
+                        <th>{% trans "Status" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for device in devices %}
+                <tr>
+                    <td><a href="{% url 'device_detail' device.pk %}" style="color: var(--accent-cyan); text-decoration: none;">{{ device.name }}</a></td>
+                    <td>{{ device.get_device_type_display }}</td>
+                    <td><span class="badge badge-{{ device.status }}">{{ device.get_status_display }}</span></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📡</div>
+            <p>{% trans "No devices yet." %}</p>
+            <a href="{% url 'add_device' %}" class="btn btn-primary mt-16">{% trans "Add your first device" %}</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Recent Analyses -->
+    <div class="card">
+        <div class="card-title">🧠 {% trans "Recent AI Analyses" %}</div>
+        {% if recent_analyses %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{% trans "Device" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Date" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for analysis in recent_analyses %}
+                <tr>
+                    <td><a href="{% url 'analysis_detail' analysis.pk %}" style="color: var(--accent-cyan); text-decoration: none;">{{ analysis.device.name }}</a></td>
+                    <td>
+                        {% if analysis.anomalies_detected %}
+                            <span class="badge badge-error">⚠ {% trans "Anomaly" %}</span>
+                        {% else %}
+                            <span class="badge badge-online">✓ {% trans "Normal" %}</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-mono">{{ analysis.analyzed_at|date:"d/m H:i" }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">🧠</div>
+            <p>{% trans "No analyses yet." %}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Recent Metrics -->
+{% if recent_metrics %}
+<div class="card mt-16">
+    <div class="card-title">📈 {% trans "Recent Metric Readings" %}</div>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>{% trans "Device" %}</th>
+                    <th>{% trans "Metric" %}</th>
+                    <th>{% trans "Value" %}</th>
+                    <th>{% trans "Recorded" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for metric in recent_metrics %}
+            <tr>
+                <td>{{ metric.device.name }}</td>
+                <td>{{ metric.metric_name }}</td>
+                <td class="text-mono" style="color: var(--accent-cyan);">{{ metric.value }} {{ metric.unit }}</td>
+                <td class="text-mono text-muted">{{ metric.recorded_at|date:"d/m/y H:i" }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

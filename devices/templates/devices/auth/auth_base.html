@@ -1,0 +1,141 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}IoT Analyzer{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080c14;
+            --bg-card: #0d1320;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #7c3aed;
+            --text-primary: #e2e8f0;
+            --text-muted: #4a5568;
+            --border: #1e293b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 16px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background:
+                radial-gradient(ellipse at 60% 30%, rgba(124,58,237,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(0,212,255,0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .auth-wrapper {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-logo { text-align: center; margin-bottom: 24px; }
+        .auth-logo-icon {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 13px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin: 0 auto 12px;
+        }
+        .auth-logo h1 { font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; color: var(--accent-cyan); letter-spacing: 0.05em; }
+        .auth-logo p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03);
+        }
+        .auth-card h2 { font-family: 'Space Mono', monospace; font-size: 17px; font-weight: 700; margin-bottom: 22px; }
+
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px; }
+        .form-input { width: 100%; padding: 10px 13px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px; font-family: 'Sora', sans-serif; transition: all 0.18s; outline: none; -webkit-appearance: none; }
+        .form-input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(0,212,255,0.1); }
+
+        .btn-auth { width: 100%; padding: 11px; background: var(--accent-cyan); border: none; border-radius: 8px; color: #000; font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.18s; margin-top: 6px; }
+        .btn-auth:hover { background: #22e0ff; box-shadow: 0 0 22px rgba(0,212,255,0.32); }
+
+        .auth-link { text-align: center; margin-top: 18px; font-size: 13px; color: var(--text-muted); }
+        .auth-link a { color: var(--accent-cyan); text-decoration: none; }
+        .auth-link a:hover { text-decoration: underline; }
+
+        .errorlist { list-style: none; margin-top: 4px; }
+        .errorlist li { font-size: 11px; color: #f87171; }
+
+        .alert { padding: 10px 13px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; border: 1px solid; }
+        .alert-error { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.25); color: #fca5a5; }
+
+        .lang-switcher { display: flex; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 7px; overflow: hidden; width: fit-content; margin: 0 auto 18px; }
+        .lang-btn { padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); background: none; border: none; cursor: pointer; transition: all 0.18s; font-family: 'Space Mono', monospace; }
+        .lang-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+        .lang-btn.active { background: var(--accent-cyan); color: #000; }
+
+        @media (max-width: 480px) {
+            body { padding: 12px; align-items: flex-start; padding-top: 32px; }
+            .auth-card { padding: 22px 18px; }
+            .auth-logo { margin-bottom: 18px; }
+        }
+    </style>
+</head>
+<body>
+<div class="auth-wrapper">
+    <div class="auth-logo">
+        <div class="auth-logo-icon">⚡</div>
+        <h1>IoT Analyzer</h1>
+        <p>{% trans "AI-Powered IoT Analysis Platform" %}</p>
+    </div>
+
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <div class="lang-switcher">
+            <button type="submit" name="language" value="en" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
+            <button type="submit" name="language" value="ru" class="lang-btn {% if LANGUAGE_CODE == 'ru' %}active{% endif %}">RU</button>
+            <button type="submit" name="language" value="uz" class="lang-btn {% if LANGUAGE_CODE == 'uz' %}active{% endif %}">UZ</button>
+        </div>
+    </form>
+
+    <div class="auth-card">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-error">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>

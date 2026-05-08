@@ -1,0 +1,56 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "AI Analyses" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "AI Analyses" %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "AI" %} <span>{% trans "Analyses" %}</span></h1>
+</div>
+
+{% if analyses %}
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>{% trans "Device" %}</th>
+                <th>{% trans "Result Status" %}</th>
+                <th>{% trans "Language" %}</th>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Preview" %}</th>
+                <th>{% trans "Action" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for analysis in analyses %}
+        <tr>
+            <td>
+                <a href="{% url 'device_detail' analysis.device.pk %}" style="color: var(--accent-cyan); text-decoration: none;">{{ analysis.device.name }}</a>
+            </td>
+            <td>
+                {% if analysis.anomalies_detected %}
+                    <span class="badge badge-error">⚠ {% trans "Anomaly" %}</span>
+                {% else %}
+                    <span class="badge badge-online">✓ {% trans "Normal" %}</span>
+                {% endif %}
+            </td>
+            <td><span class="text-mono" style="color: var(--text-muted);">{{ analysis.language|upper }}</span></td>
+            <td class="text-mono text-muted">{{ analysis.analyzed_at|date:"d/m/Y H:i" }}</td>
+            <td style="max-width: 300px; color: var(--text-muted); font-size: 12px;">{{ analysis.result|truncatechars:80 }}</td>
+            <td><a href="{% url 'analysis_detail' analysis.pk %}" class="btn btn-secondary btn-sm">{% trans "View" %}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="card">
+    <div class="empty-state">
+        <div class="empty-icon">🧠</div>
+        <p>{% trans "No AI analyses yet." %}</p>
+        <a href="{% url 'device_list' %}" class="btn btn-primary mt-16">{% trans "Go to Devices" %}</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Delete Device" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "Delete Device" %}{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "Delete" %} <span>{% trans "Device" %}</span></h1>
+</div>
+<div class="card" style="max-width: 480px;">
+    <div style="text-align: center; padding: 16px 0;">
+        <div style="font-size: 48px; margin-bottom: 16px;">🗑️</div>
+        <h3 style="font-size: 18px; margin-bottom: 8px;">{% trans "Are you sure?" %}</h3>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">
+            {% trans "You are about to permanently delete" %} <strong style="color: var(--accent-orange);">{{ device.name }}</strong>.
+            {% trans "This will also delete all its metrics and analyses. This action cannot be undone." %}
+        </p>
+        <form method="post" style="display: flex; gap: 10px; justify-content: center;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg">🗑 {% trans "Yes, Delete" %}</button>
+            <a href="{% url 'device_detail' device.pk %}" class="btn btn-secondary btn-lg">{% trans "Cancel" %}</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

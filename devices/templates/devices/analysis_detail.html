@@ -1,0 +1,97 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Analysis Result" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "AI Analysis" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+.analysis-result {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    font-family: 'Sora', sans-serif;
+}
+.analysis-result strong, .analysis-result b {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.analysis-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+.meta-item { font-size: 13px; }
+.meta-label { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+.meta-value { color: var(--text-primary); font-weight: 600; margin-top: 3px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "AI Analysis" %} <span>{{ analysis.device.name }}</span></h1>
+    <div class="flex" style="gap: 10px;">
+        <a href="{% url 'device_detail' analysis.device.pk %}" class="btn btn-secondary">← {% trans "Back to Device" %}</a>
+        <a href="{% url 'analysis_list' %}" class="btn btn-secondary">📋 {% trans "All Analyses" %}</a>
+    </div>
+</div>
+
+<div class="analysis-meta">
+    <div class="meta-item">
+        <div class="meta-label">{% trans "Device" %}</div>
+        <div class="meta-value">{{ analysis.device.name }}</div>
+    </div>
+    <div class="meta-item">
+        <div class="meta-label">{% trans "Date" %}</div>
+        <div class="meta-value text-mono">{{ analysis.analyzed_at|date:"d/m/Y H:i" }}</div>
+    </div>
+    <div class="meta-item">
+        <div class="meta-label">{% trans "Language" %}</div>
+        <div class="meta-value">{{ analysis.language|upper }}</div>
+    </div>
+    <div class="meta-item">
+        <div class="meta-label">{% trans "Status" %}</div>
+        <div class="meta-value">
+            {% if analysis.anomalies_detected %}
+                <span class="badge badge-error">⚠ {% trans "Anomaly Detected" %}</span>
+            {% else %}
+                <span class="badge badge-online">✓ {% trans "Normal" %}</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-title">🧠 {% trans "Analysis Result" %}</div>
+    <div class="analysis-result">{{ analysis.result }}</div>
+</div>
+
+<div class="card mt-16">
+    <div class="card-title" style="cursor: pointer;" onclick="togglePrompt()">
+        🔍 {% trans "Prompt Used" %} <span id="prompt-toggle" style="color: var(--text-muted); font-size: 11px; margin-left: 8px;">({% trans "show" %})</span>
+    </div>
+    <div id="prompt-content" style="display: none;">
+        <pre style="font-size: 12px; color: var(--text-muted); white-space: pre-wrap; font-family: 'Space Mono', monospace; line-height: 1.6;">{{ analysis.prompt_used }}</pre>
+    </div>
+</div>
+
+<script>
+function togglePrompt() {
+    const content = document.getElementById('prompt-content');
+    const toggle = document.getElementById('prompt-toggle');
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        toggle.textContent = '(hide)';
+    } else {
+        content.style.display = 'none';
+        toggle.textContent = '(show)';
+    }
+}
+</script>
+{% endblock %}

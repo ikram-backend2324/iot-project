@@ -1,0 +1,324 @@
+# Russian translations for IoT Analyzer
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+
+msgid "English"
+msgstr "Английский"
+
+msgid "Russian"
+msgstr "Русский"
+
+msgid "Uzbek"
+msgstr "Узбекский"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "All Devices"
+msgstr "Все устройства"
+
+msgid "Add Device"
+msgstr "Добавить устройство"
+
+msgid "AI Analyses"
+msgstr "ИИ-Анализы"
+
+msgid "Analytics"
+msgstr "Аналитика"
+
+msgid "Devices"
+msgstr "Устройства"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "Sign In"
+msgstr "Войти"
+
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "Confirm Password"
+msgstr "Подтвердить пароль"
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgid "Register"
+msgstr "Регистрация"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Invalid username or password."
+msgstr "Неверное имя пользователя или пароль."
+
+msgid "Welcome! Your account has been created."
+msgstr "Добро пожаловать! Ваш аккаунт создан."
+
+msgid "You have been logged out."
+msgstr "Вы вышли из системы."
+
+msgid "System"
+msgstr "Система"
+
+msgid "Total Devices"
+msgstr "Всего устройств"
+
+msgid "Online"
+msgstr "Онлайн"
+
+msgid "Errors"
+msgstr "Ошибки"
+
+msgid "Recent Devices"
+msgstr "Последние устройства"
+
+msgid "Recent AI Analyses"
+msgstr "Последние ИИ-анализы"
+
+msgid "Recent Metric Readings"
+msgstr "Последние показатели"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Anomaly"
+msgstr "Аномалия"
+
+msgid "Normal"
+msgstr "Норма"
+
+msgid "No devices yet."
+msgstr "Устройств пока нет."
+
+msgid "Add your first device"
+msgstr "Добавить первое устройство"
+
+msgid "No analyses yet."
+msgstr "Анализов пока нет."
+
+msgid "Device Name"
+msgstr "Название устройства"
+
+msgid "Device Type"
+msgstr "Тип устройства"
+
+msgid "Location"
+msgstr "Местоположение"
+
+msgid "IP Address"
+msgstr "IP-адрес"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Edit Device"
+msgstr "Редактировать устройство"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Log Metric"
+msgstr "Записать показатель"
+
+msgid "Metric Name"
+msgstr "Название показателя"
+
+msgid "Value"
+msgstr "Значение"
+
+msgid "Unit"
+msgstr "Единица"
+
+msgid "Metric Charts"
+msgstr "Графики"
+
+msgid "Raw Metrics"
+msgstr "Показатели"
+
+msgid "AI Analysis History"
+msgstr "История анализов"
+
+msgid "View Full"
+msgstr "Открыть"
+
+msgid "Anomaly Detected"
+msgstr "Обнаружена аномалия"
+
+msgid "Healthy"
+msgstr "Норма"
+
+msgid "Analyze with AI"
+msgstr "Анализировать с ИИ"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "View"
+msgstr "Просмотр"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Clear"
+msgstr "Сбросить"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Added"
+msgstr "Добавлено"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Device added successfully!"
+msgstr "Устройство успешно добавлено!"
+
+msgid "Device updated successfully!"
+msgstr "Устройство успешно обновлено!"
+
+msgid "Device deleted successfully!"
+msgstr "Устройство удалено!"
+
+msgid "Metric logged successfully!"
+msgstr "Показатель записан!"
+
+msgid "Analysis completed!"
+msgstr "Анализ завершён!"
+
+msgid "Analysis failed"
+msgstr "Анализ не удался"
+
+msgid "Analysis Result"
+msgstr "Результат анализа"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "AI-Powered IoT Analysis Platform"
+msgstr "Платформа ИИ-анализа IoT"
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgid "You are about to permanently delete"
+msgstr "Вы собираетесь удалить"
+
+msgid "This will also delete all its metrics and analyses. This action cannot be undone."
+msgstr "Это также удалит все показатели и анализы. Действие необратимо."
+
+msgid "Yes, Delete"
+msgstr "Да, удалить"
+
+msgid "Delete Device"
+msgstr "Удалить устройство"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Prompt Used"
+msgstr "Использованный запрос"
+
+msgid "show"
+msgstr "показать"
+
+msgid "Back to Device"
+msgstr "К устройству"
+
+msgid "All Analyses"
+msgstr "Все анализы"
+
+msgid "No metrics logged yet."
+msgstr "Нет записанных показателей."
+
+msgid "Log first metric"
+msgstr "Записать первый показатель"
+
+msgid "No AI analyses yet."
+msgstr "Анализов ИИ пока нет."
+
+msgid "Go to Devices"
+msgstr "К устройствам"
+
+msgid "Recorded"
+msgstr "Записано"
+
+msgid "Preview"
+msgstr "Предпросмотр"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "No devices found."
+msgstr "Устройства не найдены."
+
+msgid "Sensor"
+msgstr "Датчик"
+
+msgid "Actuator"
+msgstr "Исполнительный механизм"
+
+msgid "Gateway"
+msgstr "Шлюз"
+
+msgid "Camera"
+msgstr "Камера"
+
+msgid "Controller"
+msgstr "Контроллер"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Offline"
+msgstr "Офлайн"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Maintenance"
+msgstr "Обслуживание"
+
+msgid "e.g.: temperature, cpu_usage, humidity, voltage"
+msgstr "например: температура, загрузка_cpu, влажность, напряжение"
+
+msgid "e.g.: °C, %, V, MHz"
+msgstr "например: °C, %, В, МГц"

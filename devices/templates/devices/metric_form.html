@@ -1,0 +1,39 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Log Metric" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "Log Metric" %}{% endblock %}
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "Log" %} <span>{% trans "Metric" %}</span></h1>
+    <a href="{% url 'device_detail' device.pk %}" class="btn btn-secondary">← {% trans "Back" %}</a>
+</div>
+<div class="card" style="max-width: 480px;">
+    <div style="margin-bottom: 16px; padding: 12px; background: rgba(0,212,255,0.05); border-radius: 8px; border: 1px solid rgba(0,212,255,0.15);">
+        <span style="font-size: 13px; color: var(--text-secondary);">{% trans "Device" %}:</span>
+        <span style="font-size: 14px; font-weight: 600; color: var(--accent-cyan); margin-left: 6px;">{{ device.name }}</span>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="form-label">{% trans "Metric Name" %} *</label>
+            {{ form.metric_name }}
+            <div style="margin-top: 5px; font-size: 11px; color: var(--text-muted);">{% trans "e.g.: temperature, cpu_usage, humidity, voltage" %}</div>
+        </div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label class="form-label">{% trans "Value" %} *</label>
+                {{ form.value }}
+            </div>
+            <div class="form-group">
+                <label class="form-label">{% trans "Unit" %}</label>
+                {{ form.unit }}
+                <div style="margin-top: 5px; font-size: 11px; color: var(--text-muted);">{% trans "e.g.: °C, %, V, MHz" %}</div>
+            </div>
+        </div>
+        <div class="flex" style="gap: 10px;">
+            <button type="submit" class="btn btn-primary">📊 {% trans "Log Metric" %}</button>
+            <a href="{% url 'device_detail' device.pk %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

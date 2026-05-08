@@ -1,0 +1,324 @@
+# Uzbek translations for IoT Analyzer
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uz\n"
+
+msgid "English"
+msgstr "Inglizcha"
+
+msgid "Russian"
+msgstr "Ruscha"
+
+msgid "Uzbek"
+msgstr "O'zbekcha"
+
+msgid "Dashboard"
+msgstr "Boshqaruv paneli"
+
+msgid "Overview"
+msgstr "Umumiy ko'rinish"
+
+msgid "All Devices"
+msgstr "Barcha qurilmalar"
+
+msgid "Add Device"
+msgstr "Qurilma qo'shish"
+
+msgid "AI Analyses"
+msgstr "AI Tahlillari"
+
+msgid "Analytics"
+msgstr "Tahlil"
+
+msgid "Devices"
+msgstr "Qurilmalar"
+
+msgid "User"
+msgstr "Foydalanuvchi"
+
+msgid "Logout"
+msgstr "Chiqish"
+
+msgid "Sign In"
+msgstr "Kirish"
+
+msgid "Create Account"
+msgstr "Hisob yaratish"
+
+msgid "Username"
+msgstr "Foydalanuvchi nomi"
+
+msgid "Password"
+msgstr "Parol"
+
+msgid "Email"
+msgstr "Elektron pochta"
+
+msgid "Confirm Password"
+msgstr "Parolni tasdiqlash"
+
+msgid "Don't have an account?"
+msgstr "Hisobingiz yo'qmi?"
+
+msgid "Register"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Already have an account?"
+msgstr "Hisobingiz bormi?"
+
+msgid "Invalid username or password."
+msgstr "Noto'g'ri foydalanuvchi nomi yoki parol."
+
+msgid "Welcome! Your account has been created."
+msgstr "Xush kelibsiz! Hisobingiz yaratildi."
+
+msgid "You have been logged out."
+msgstr "Tizimdan chiqdingiz."
+
+msgid "System"
+msgstr "Tizim"
+
+msgid "Total Devices"
+msgstr "Jami qurilmalar"
+
+msgid "Online"
+msgstr "Onlayn"
+
+msgid "Errors"
+msgstr "Xatolar"
+
+msgid "Recent Devices"
+msgstr "So'nggi qurilmalar"
+
+msgid "Recent AI Analyses"
+msgstr "So'nggi AI tahlillari"
+
+msgid "Recent Metric Readings"
+msgstr "So'nggi o'lchov ko'rsatkichlari"
+
+msgid "Name"
+msgstr "Nomi"
+
+msgid "Type"
+msgstr "Turi"
+
+msgid "Status"
+msgstr "Holat"
+
+msgid "Device"
+msgstr "Qurilma"
+
+msgid "Date"
+msgstr "Sana"
+
+msgid "Anomaly"
+msgstr "Anomaliya"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "No devices yet."
+msgstr "Hali qurilmalar yo'q."
+
+msgid "Add your first device"
+msgstr "Birinchi qurilmani qo'shing"
+
+msgid "No analyses yet."
+msgstr "Hali tahlillar yo'q."
+
+msgid "Device Name"
+msgstr "Qurilma nomi"
+
+msgid "Device Type"
+msgstr "Qurilma turi"
+
+msgid "Location"
+msgstr "Joylashuv"
+
+msgid "IP Address"
+msgstr "IP manzil"
+
+msgid "Description"
+msgstr "Tavsif"
+
+msgid "Save"
+msgstr "Saqlash"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Edit Device"
+msgstr "Qurilmani tahrirlash"
+
+msgid "Back"
+msgstr "Orqaga"
+
+msgid "Log Metric"
+msgstr "Ko'rsatkich yozish"
+
+msgid "Metric Name"
+msgstr "Ko'rsatkich nomi"
+
+msgid "Value"
+msgstr "Qiymat"
+
+msgid "Unit"
+msgstr "Birlik"
+
+msgid "Metric Charts"
+msgstr "Ko'rsatkich grafiklari"
+
+msgid "Raw Metrics"
+msgstr "Xom ko'rsatkichlar"
+
+msgid "AI Analysis History"
+msgstr "AI tahlil tarixi"
+
+msgid "View Full"
+msgstr "To'liq ko'rish"
+
+msgid "Anomaly Detected"
+msgstr "Anomaliya aniqlandi"
+
+msgid "Healthy"
+msgstr "Normal"
+
+msgid "Analyze with AI"
+msgstr "AI bilan tahlil qilish"
+
+msgid "Edit"
+msgstr "Tahrirlash"
+
+msgid "View"
+msgstr "Ko'rish"
+
+msgid "Filter"
+msgstr "Filtr"
+
+msgid "Clear"
+msgstr "Tozalash"
+
+msgid "All"
+msgstr "Barchasi"
+
+msgid "Added"
+msgstr "Qo'shilgan"
+
+msgid "Actions"
+msgstr "Amallar"
+
+msgid "Device added successfully!"
+msgstr "Qurilma muvaffaqiyatli qo'shildi!"
+
+msgid "Device updated successfully!"
+msgstr "Qurilma yangilandi!"
+
+msgid "Device deleted successfully!"
+msgstr "Qurilma o'chirildi!"
+
+msgid "Metric logged successfully!"
+msgstr "Ko'rsatkich yozildi!"
+
+msgid "Analysis completed!"
+msgstr "Tahlil yakunlandi!"
+
+msgid "Analysis failed"
+msgstr "Tahlil amalga oshmadi"
+
+msgid "Analysis Result"
+msgstr "Tahlil natijasi"
+
+msgid "Language"
+msgstr "Til"
+
+msgid "AI-Powered IoT Analysis Platform"
+msgstr "AI asosida IoT tahlil platformasi"
+
+msgid "Are you sure?"
+msgstr "Ishonchingiz komilmi?"
+
+msgid "You are about to permanently delete"
+msgstr "Siz butunlay o'chirmoqchisiz"
+
+msgid "This will also delete all its metrics and analyses. This action cannot be undone."
+msgstr "Bu barcha ko'rsatkichlar va tahlillarni ham o'chiradi. Bu amalni bekor qilib bo'lmaydi."
+
+msgid "Yes, Delete"
+msgstr "Ha, o'chirish"
+
+msgid "Delete Device"
+msgstr "Qurilmani o'chirish"
+
+msgid "Delete"
+msgstr "O'chirish"
+
+msgid "Prompt Used"
+msgstr "Ishlatilgan so'rov"
+
+msgid "show"
+msgstr "ko'rsatish"
+
+msgid "Back to Device"
+msgstr "Qurilmaga qaytish"
+
+msgid "All Analyses"
+msgstr "Barcha tahlillar"
+
+msgid "No metrics logged yet."
+msgstr "Ko'rsatkichlar hali yo'q."
+
+msgid "Log first metric"
+msgstr "Birinchi ko'rsatkichni yozing"
+
+msgid "No AI analyses yet."
+msgstr "AI tahlillari hali yo'q."
+
+msgid "Go to Devices"
+msgstr "Qurilmalarga o'tish"
+
+msgid "Recorded"
+msgstr "Yozilgan"
+
+msgid "Preview"
+msgstr "Ko'rinish"
+
+msgid "Action"
+msgstr "Amal"
+
+msgid "No devices found."
+msgstr "Qurilmalar topilmadi."
+
+msgid "Sensor"
+msgstr "Sensor"
+
+msgid "Actuator"
+msgstr "Aktuator"
+
+msgid "Gateway"
+msgstr "Shlyuz"
+
+msgid "Camera"
+msgstr "Kamera"
+
+msgid "Controller"
+msgstr "Kontroller"
+
+msgid "Other"
+msgstr "Boshqa"
+
+msgid "Offline"
+msgstr "Oflayn"
+
+msgid "Error"
+msgstr "Xato"
+
+msgid "Maintenance"
+msgstr "Texnik xizmat"
+
+msgid "e.g.: temperature, cpu_usage, humidity, voltage"
+msgstr "masalan: harorat, protsessor_yuklama, namlik, kuchlanish"
+
+msgid "e.g.: °C, %, V, MHz"
+msgstr "masalan: °C, %, V, MGts"

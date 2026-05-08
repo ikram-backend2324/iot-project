@@ -1,0 +1,197 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ device.name }} — IoT Analyzer{% endblock %}
+{% block page_title %}{{ device.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.device-header-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+.device-info { min-width: 0; flex: 1; }
+.device-info h2 { font-size: 19px; font-weight: 700; margin-bottom: 6px; word-break: break-word; }
+.device-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.device-meta-item { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+.device-meta-item strong { color: var(--text-secondary); }
+.device-actions { display: flex; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+@media (max-width: 600px) {
+    .device-header-card { flex-direction: column; }
+    .device-actions { width: 100%; }
+    .device-actions .btn { flex: 1; justify-content: center; }
+}
+.chart-container { height: 200px; position: relative; }
+.analysis-card {
+    border-radius: 10px;
+    padding: 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+}
+.analysis-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.analysis-preview { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Device Header -->
+<div class="device-header-card">
+    <div class="device-info">
+        <h2>{{ device.name }}</h2>
+        <span class="badge badge-{{ device.status }}">{{ device.get_status_display }}</span>
+        <div class="device-meta">
+            <div class="device-meta-item">📦 <strong>{{ device.get_device_type_display }}</strong></div>
+            {% if device.location %}<div class="device-meta-item">📍 <strong>{{ device.location }}</strong></div>{% endif %}
+            {% if device.ip_address %}<div class="device-meta-item">🌐 <strong class="text-mono">{{ device.ip_address }}</strong></div>{% endif %}
+            <div class="device-meta-item">📅 <strong>{{ device.created_at|date:"d/m/Y" }}</strong></div>
+        </div>
+        {% if device.description %}<p style="margin-top: 10px; font-size: 13px; color: var(--text-muted);">{{ device.description }}</p>{% endif %}
+    </div>
+    <div class="device-actions">
+        <a href="{% url 'add_metric' device.pk %}" class="btn btn-secondary">📊 {% trans "Log Metric" %}</a>
+        <form method="post" action="{% url 'analyze_device' device.pk %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">🧠 {% trans "Analyze with AI" %}</button>
+        </form>
+        <a href="{% url 'edit_device' device.pk %}" class="btn btn-secondary">✏ {% trans "Edit" %}</a>
+        <a href="{% url 'delete_device' device.pk %}" class="btn btn-danger">🗑</a>
+    </div>
+</div>
+
+<div class="grid-2">
+    <!-- Metrics Charts -->
+    <div class="card">
+        <div class="card-title">📈 {% trans "Metric Charts" %}</div>
+        {% if chart_metrics %}
+            {% for metric_name, data in chart_metrics.items %}
+            <div style="margin-bottom: 24px;">
+                <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em;">
+                    {{ metric_name }} {% if data.unit %}<span style="color: var(--text-muted);">({{ data.unit }})</span>{% endif %}
+                </div>
+                <div class="chart-container">
+                    <canvas id="chart-{{ forloop.counter }}"></canvas>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📊</div>
+            <p>{% trans "No metrics logged yet." %}</p>
+            <a href="{% url 'add_metric' device.pk %}" class="btn btn-primary mt-16">{% trans "Log first metric" %}</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Recent Metrics Table -->
+    <div class="card">
+        <div class="card-title">📋 {% trans "Raw Metrics" %}</div>
+        {% if metrics %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>{% trans "Metric" %}</th>
+                        <th>{% trans "Value" %}</th>
+                        <th>{% trans "Time" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for metric in metrics %}
+                <tr>
+                    <td>{{ metric.metric_name }}</td>
+                    <td class="text-mono" style="color: var(--accent-cyan);">{{ metric.value }} {{ metric.unit }}</td>
+                    <td class="text-mono text-muted">{{ metric.recorded_at|date:"d/m H:i" }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📋</div>
+            <p>{% trans "No metrics logged yet." %}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- AI Analyses -->
+<div class="card mt-16">
+    <div class="card-title">🧠 {% trans "AI Analysis History" %}</div>
+    {% if analyses %}
+    {% for analysis in analyses %}
+    <div class="analysis-card">
+        <div class="analysis-header">
+            <div class="flex-center" style="gap: 10px;">
+                {% if analysis.anomalies_detected %}
+                    <span class="badge badge-error">⚠ {% trans "Anomaly Detected" %}</span>
+                {% else %}
+                    <span class="badge badge-online">✓ {% trans "Healthy" %}</span>
+                {% endif %}
+                <span class="text-mono text-muted">{{ analysis.analyzed_at|date:"d/m/Y H:i" }}</span>
+            </div>
+            <a href="{% url 'analysis_detail' analysis.pk %}" class="btn btn-secondary btn-sm">{% trans "View Full" %}</a>
+        </div>
+        <p class="analysis-preview">{{ analysis.result|truncatechars:200 }}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">🧠</div>
+        <p>{% trans "No analyses yet. Click 'Analyze with AI' to start." %}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+Chart.defaults.color = '#8899aa';
+Chart.defaults.borderColor = '#1e293b';
+
+const chartData = {{ chart_metrics|safe }};
+let idx = 1;
+
+for (const [metricName, data] of Object.entries(chartData)) {
+    const canvas = document.getElementById('chart-' + idx);
+    if (!canvas) { idx++; continue; }
+    new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: metricName,
+                data: data.values,
+                borderColor: '#00d4ff',
+                backgroundColor: 'rgba(0, 212, 255, 0.06)',
+                borderWidth: 2,
+                pointRadius: 4,
+                pointBackgroundColor: '#00d4ff',
+                tension: 0.3,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { grid: { color: '#1e293b' }, ticks: { maxTicksLimit: 6, font: { family: 'Space Mono', size: 10 } } },
+                y: { grid: { color: '#1e293b' }, ticks: { font: { family: 'Space Mono', size: 10 } } }
+            }
+        }
+    });
+    idx++;
+}
+</script>
+{% endblock %}
