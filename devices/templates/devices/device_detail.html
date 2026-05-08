@@ -58,10 +58,7 @@
     </div>
     <div class="device-actions">
         <a href="{% url 'add_metric' device.pk %}" class="btn btn-secondary">📊 {% trans "Log Metric" %}</a>
-        <form method="post" action="{% url 'analyze_device' device.pk %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">🧠 {% trans "Analyze with AI" %}</button>
-        </form>
+        <a href="{% url 'analyze_device' device.pk %}" class="btn btn-primary">🧠 {% trans "Analyze with AI" %}</a>
         <a href="{% url 'edit_device' device.pk %}" class="btn btn-secondary">✏ {% trans "Edit" %}</a>
         <a href="{% url 'delete_device' device.pk %}" class="btn btn-danger">🗑</a>
     </div>

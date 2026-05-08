@@ -160,7 +160,7 @@ def analyze_device(request, pk):
             messages.error(request, f"{_('Analysis failed')}: {result['error']}")
             return redirect('device_detail', pk=device.pk)
 
-    return render(request, 'devices/analyze_confirm.html', {'device': device})
+    return render(request, 'devices/analyze_loading.html', {'device': device})
 
 
 @login_required

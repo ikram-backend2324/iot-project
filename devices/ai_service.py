@@ -45,10 +45,10 @@ Recent Metrics (last readings):
 
 Please provide your analysis in the following structure:
 1. **Overall Health Status** - Rate the device health (Good/Warning/Critical) and explain why
-2. **Anomaly Detection** - List any unusual patterns or values detected
+2. **Anomaly Detection** - If anomalies exist, write exactly "ANOMALY DETECTED:" followed by details. If none, write "No anomalies detected."
 3. **Performance Assessment** - Evaluate the device performance based on metrics
 4. **Recommendations** - Provide specific actionable recommendations
-5. **Risk Level** - Assess the risk level (Low/Medium/High) with justification
+5. **Risk Level** - Write exactly "Risk Level: Low", "Risk Level: Medium", or "Risk Level: High"
 
 Be concise but thorough. If no metrics are available, provide general recommendations based on device type and status.
 """
@@ -81,7 +81,12 @@ Be concise but thorough. If no metrics are available, provide general recommenda
         result_text = data['choices'][0]['message']['content']
 
         # Detect anomalies keyword based on language
-        anomaly_keywords = ['anomal', 'critical', 'warning', 'критич', 'аномал', 'предупреждени', 'kritik', 'ogohlantirish']
+        # Detect based on the explicit markers we asked the AI to use
+        anomaly_keywords = [
+            'anomaly detected:',
+            'risk level: high',
+            'risk level: critical',
+        ]
         anomalies_detected = any(kw.lower() in result_text.lower() for kw in anomaly_keywords)
 
         return {

@@ -1,0 +1,414 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Analyzing" %}... — IoT Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080c14;
+            --cyan: #00d4ff;
+            --green: #00ff88;
+            --purple: #7c3aed;
+            --orange: #ff6b35;
+            --text: #e2e8f0;
+            --muted: #4a5568;
+            --border: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated grid background */
+        .bg-grid {
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+            background-size: 44px 44px;
+            animation: gridPulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Radial glow blobs */
+        .glow-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            animation: blobFloat 6s ease-in-out infinite;
+        }
+        .glow-blob-1 { width: 400px; height: 400px; background: rgba(124,58,237,0.12); top: -100px; right: -100px; animation-delay: 0s; }
+        .glow-blob-2 { width: 300px; height: 300px; background: rgba(0,212,255,0.09); bottom: -80px; left: -80px; animation-delay: 2s; }
+        .glow-blob-3 { width: 200px; height: 200px; background: rgba(0,255,136,0.06); top: 40%; left: 60%; animation-delay: 4s; }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* Main container */
+        .loader-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* ── BRAIN ANIMATION ── */
+        .brain-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 32px;
+        }
+
+        .brain-core {
+            position: absolute;
+            inset: 20px;
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px;
+            animation: brainPulse 1.8s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(0,212,255,0.4), 0 0 60px rgba(124,58,237,0.3);
+            z-index: 2;
+        }
+
+        @keyframes brainPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(0,212,255,0.4), 0 0 60px rgba(124,58,237,0.3); }
+            50% { transform: scale(1.08); box-shadow: 0 0 50px rgba(0,212,255,0.6), 0 0 90px rgba(124,58,237,0.5); }
+        }
+
+        /* Orbiting rings */
+        .ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+        }
+        .ring-1 {
+            border-top-color: var(--cyan);
+            border-right-color: rgba(0,212,255,0.3);
+            animation: spin 2s linear infinite;
+        }
+        .ring-2 {
+            inset: 8px;
+            border-bottom-color: var(--purple);
+            border-left-color: rgba(124,58,237,0.3);
+            animation: spin 3s linear infinite reverse;
+        }
+        .ring-3 {
+            inset: -8px;
+            border-top-color: rgba(0,255,136,0.4);
+            border-left-color: transparent;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Orbiting dots */
+        .orbit-dot {
+            position: absolute;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            top: 50%; left: 50%;
+        }
+        .orbit-dot-1 {
+            background: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan);
+            animation: orbitDot1 2s linear infinite;
+            transform-origin: -50px 0;
+        }
+        .orbit-dot-2 {
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: orbitDot2 3s linear infinite;
+            transform-origin: -38px 0;
+        }
+        .orbit-dot-3 {
+            background: var(--purple);
+            box-shadow: 0 0 8px var(--purple);
+            animation: orbitDot3 1.5s linear infinite;
+            transform-origin: -56px 0;
+        }
+
+        @keyframes orbitDot1 { to { transform: rotate(360deg) translateX(-50px); } }
+        @keyframes orbitDot2 { to { transform: rotate(-360deg) translateX(-38px); } }
+        @keyframes orbitDot3 { to { transform: rotate(360deg) translateX(-56px); } }
+
+        /* ── TEXT ── */
+        .loader-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .loader-title span { color: var(--cyan); }
+
+        .device-name {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 28px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── STATUS STEPS ── */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 320px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--muted);
+            transition: all 0.4s ease;
+            opacity: 0.4;
+        }
+
+        .step.active {
+            background: rgba(0,212,255,0.07);
+            border-color: rgba(0,212,255,0.25);
+            color: var(--text);
+            opacity: 1;
+        }
+
+        .step.done {
+            background: rgba(0,255,136,0.06);
+            border-color: rgba(0,255,136,0.2);
+            color: #6ee7b7;
+            opacity: 0.9;
+        }
+
+        .step-icon {
+            width: 26px; height: 26px;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .step.active .step-icon { background: rgba(0,212,255,0.15); animation: iconPulse 1s ease-in-out infinite; }
+        .step.done .step-icon { background: rgba(0,255,136,0.12); }
+        .step-default .step-icon { background: rgba(255,255,255,0.05); }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* ── PROGRESS BAR ── */
+        .progress-wrap {
+            width: 320px;
+            height: 3px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--purple), var(--cyan), var(--green));
+            background-size: 200% 100%;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.6s ease;
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ── HINT TEXT ── */
+        .hint {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.03em;
+        }
+
+        .dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        @keyframes dots {
+            0%   { content: ''; }
+            25%  { content: '.'; }
+            50%  { content: '..'; }
+            75%  { content: '...'; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px; height: 2px;
+            border-radius: 50%;
+            background: var(--cyan);
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="glow-blob glow-blob-1"></div>
+<div class="glow-blob glow-blob-2"></div>
+<div class="glow-blob glow-blob-3"></div>
+<div class="particles" id="particles"></div>
+
+<div class="loader-container">
+
+    <!-- Brain animation -->
+    <div class="brain-wrapper">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="brain-core">🧠</div>
+        <div class="orbit-dot orbit-dot-1"></div>
+        <div class="orbit-dot orbit-dot-2"></div>
+        <div class="orbit-dot orbit-dot-3"></div>
+    </div>
+
+    <div class="loader-title">{% trans "AI" %} <span>{% trans "Analyzing" %}</span></div>
+    <div class="device-name">{{ device.name }}</div>
+
+    <!-- Step indicators -->
+    <div class="steps" id="steps">
+        <div class="step" id="step-1">
+            <div class="step-icon">📡</div>
+            <span>{% trans "Collecting device metrics" %}</span>
+        </div>
+        <div class="step" id="step-2">
+            <div class="step-icon">🔍</div>
+            <span>{% trans "Building analysis prompt" %}</span>
+        </div>
+        <div class="step" id="step-3">
+            <div class="step-icon">🤖</div>
+            <span>{% trans "Sending to AI model" %}</span>
+        </div>
+        <div class="step" id="step-4">
+            <div class="step-icon">📊</div>
+            <span>{% trans "Processing response" %}</span>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="hint"><span class="dots">{% trans "This may take a few seconds" %}</span></div>
+
+</div>
+
+<!-- Hidden form that actually submits to Django -->
+<form id="analyzeForm" method="post" action="{% url 'analyze_device' device.pk %}" style="display:none;">
+    {% csrf_token %}
+</form>
+
+<script>
+    // Generate floating particles
+    const container = document.getElementById('particles');
+    const colors = ['#00d4ff', '#00ff88', '#7c3aed', '#ff6b35'];
+    for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (6 + Math.random() * 10) + 's';
+        p.style.animationDelay = (Math.random() * 8) + 's';
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+        container.appendChild(p);
+    }
+
+    // Step animation sequence
+    const steps = [
+        { id: 'step-1', delay: 200,  progress: 15 },
+        { id: 'step-2', delay: 900,  progress: 35 },
+        { id: 'step-3', delay: 1600, progress: 55 },
+        { id: 'step-4', delay: 2400, progress: 75 },
+    ];
+
+    const bar = document.getElementById('progressBar');
+
+    function activateStep(index) {
+        // Mark previous as done
+        if (index > 0) {
+            const prev = document.getElementById(steps[index - 1].id);
+            prev.classList.remove('active');
+            prev.classList.add('done');
+            prev.querySelector('.step-icon').textContent = '✓';
+        }
+        const current = document.getElementById(steps[index].id);
+        current.classList.add('active');
+        bar.style.width = steps[index].progress + '%';
+    }
+
+    // Animate steps
+    steps.forEach((step, i) => {
+        setTimeout(() => activateStep(i), step.delay);
+    });
+
+    // Submit the real form after animations play a bit
+    setTimeout(() => {
+        bar.style.width = '88%';
+        document.getElementById('analyzeForm').submit();
+    }, 3200);
+</script>
+</body>
+</html>
