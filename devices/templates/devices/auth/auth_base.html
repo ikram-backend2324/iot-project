@@ -120,11 +120,11 @@
 
     <form action="{% url 'set_language' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="hidden" name="next" value="/">
         <div class="lang-switcher">
-            <button type="submit" name="language" value="en" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
-            <button type="submit" name="language" value="ru" class="lang-btn {% if LANGUAGE_CODE == 'ru' %}active{% endif %}">RU</button>
-            <button type="submit" name="language" value="uz" class="lang-btn {% if LANGUAGE_CODE == 'uz' %}active{% endif %}">UZ</button>
+            <button type="submit" name="language" value="en" class="lang-btn {% if ACTIVE_LANG == 'en' %}active{% endif %}">EN</button>
+            <button type="submit" name="language" value="ru" class="lang-btn {% if ACTIVE_LANG == 'ru' %}active{% endif %}">RU</button>
+            <button type="submit" name="language" value="uz" class="lang-btn {% if ACTIVE_LANG == 'uz' %}active{% endif %}">UZ</button>
         </div>
     </form>
 
