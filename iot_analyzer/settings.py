@@ -107,7 +107,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/auth/login/'
 
 OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')
-OPENROUTER_MODEL = 'mistralai/mistral-7b-instruct'
+OPENROUTER_MODEL = 'deepseek/deepseek-chat'
 
 JAZZMIN_SETTINGS = {
     "site_title": "IoT Analyzer Admin",
