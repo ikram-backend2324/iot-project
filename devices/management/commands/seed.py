@@ -100,29 +100,61 @@ SAMPLE_METRICS = {
 SAMPLE_ANALYSIS = {
     "online": (
         False,
-        "**Overall Health Status**: Good\n\nThe device is operating within normal parameters. "
-        "All monitored metrics fall within expected ranges with no significant deviations detected.\n\n"
-        "**Anomaly Detection**: No anomalies detected in recent readings.\n\n"
-        "**Performance Assessment**: Device performance is stable. "
-        "Metric trends are consistent with historical baselines.\n\n"
-        "**Recommendations**:\n- Continue regular monitoring schedule\n"
-        "- Consider firmware update check in next maintenance window\n"
-        "- Archive older metric data to optimize storage\n\n"
-        "**Risk Level**: Low — device is healthy and fully operational."
+        {"health": 88, "performance": 84, "reliability": 90, "efficiency": 79, "security": 82, "risk": "Low", "anomaly": False},
+        "## Overall Health Status\n"
+        "The device is rated Good. It is operating within normal parameters and every monitored "
+        "metric falls inside its expected range with no significant deviation.\n\n"
+        "## Anomaly Detection\n"
+        "No anomalies detected. Readings are smooth and consistent with the historical baseline, "
+        "which is exactly what a healthy unit of this type should show.\n\n"
+        "## Performance Assessment\n"
+        "Performance is stable with comfortable headroom. Metric trends track prior weeks closely "
+        "and there are no signs of thermal or load stress.\n\n"
+        "## Metric-by-Metric Breakdown\n"
+        "1) Temperature sits mid-range and well below any warning threshold.\n"
+        "2) Signal and connectivity readings are steady, indicating a reliable link.\n"
+        "3) Power draw is nominal for this device class.\n\n"
+        "## Root Cause & Reasoning\n"
+        "Nothing is wrong. Consistent telemetry and a stable environment are keeping the device healthy.\n\n"
+        "## Recommendations\n"
+        "1) Continue the regular monitoring schedule.\n"
+        "2) Check for a firmware update in the next maintenance window.\n"
+        "3) Archive older metric data to optimise storage.\n"
+        "4) Keep a baseline snapshot for future anomaly comparison.\n\n"
+        "## Predictive Outlook\n"
+        "If conditions hold, the device should continue operating normally for the foreseeable future. "
+        "Watch for any gradual upward drift in temperature as an early-warning sign.\n\n"
+        "## Risk Level\n"
+        "Risk Level: Low because the device is healthy and fully operational."
     ),
     "error": (
         True,
-        "**Overall Health Status**: ⚠️ Critical\n\nThe device is reporting an error state. "
-        "Immediate attention is recommended.\n\n"
-        "**Anomaly Detection**: Abnormal readings detected. "
-        "Values exceed safe operating thresholds by 34%. Potential sensor calibration drift or hardware fault.\n\n"
-        "**Performance Assessment**: Device performance is degraded. "
-        "Erratic metric spikes suggest possible connection instability or component failure.\n\n"
-        "**Recommendations**:\n- Inspect device hardware immediately\n"
-        "- Check power supply and cable connections\n"
-        "- Run diagnostic self-test if supported\n"
-        "- Consider replacing if fault persists after reset\n\n"
-        "**Risk Level**: High — unresolved errors may cause system downtime."
+        {"health": 32, "performance": 38, "reliability": 28, "efficiency": 45, "security": 60, "risk": "High", "anomaly": True},
+        "## Overall Health Status\n"
+        "The device is rated Critical. It is reporting an error state and needs immediate attention.\n\n"
+        "## Anomaly Detection\n"
+        "ANOMALY DETECTED: Abnormal readings observed. Values exceed safe operating thresholds by "
+        "roughly 34%, which points to sensor calibration drift or a developing hardware fault.\n\n"
+        "## Performance Assessment\n"
+        "Performance is degraded. Erratic spikes in the metric stream suggest connection instability "
+        "or a failing component rather than a transient blip.\n\n"
+        "## Metric-by-Metric Breakdown\n"
+        "1) Primary metric is 34% above its safe ceiling — the main red flag.\n"
+        "2) Reading variance is high, consistent with an intermittent fault.\n"
+        "3) Uptime pattern shows repeated short drops.\n\n"
+        "## Root Cause & Reasoning\n"
+        "The combination of an over-threshold value and high variance most likely indicates a "
+        "calibration drift or a loose/failing sensor connection feeding bad data.\n\n"
+        "## Recommendations\n"
+        "1) Inspect the device hardware immediately.\n"
+        "2) Check the power supply and cable connections.\n"
+        "3) Run a diagnostic self-test if supported.\n"
+        "4) Replace the unit if the fault persists after a reset and recalibration.\n\n"
+        "## Predictive Outlook\n"
+        "Left unresolved, the error is likely to escalate into full downtime. Rising variance or a "
+        "complete loss of readings would be the signal that failure is imminent.\n\n"
+        "## Risk Level\n"
+        "Risk Level: High because unresolved errors may cause system downtime."
     ),
 }
 
@@ -171,14 +203,23 @@ class Command(BaseCommand):
 
         # ── Create devices ──
         created_devices = []
+        # Spread devices around Tashkent so the map has points
+        coords = [
+            (41.3111, 69.2797), (41.2995, 69.2401), (41.3275, 69.2817),
+            (41.2856, 69.2034), (41.3380, 69.3340), (41.2700, 69.2200),
+            (41.3500, 69.2500), (41.2950, 69.3100),
+        ]
         for i, d in enumerate(SAMPLE_DEVICES):
             owner = admin if i % 2 == 0 else demo
+            lat, lng = coords[i % len(coords)]
             device, created = Device.objects.get_or_create(
                 name=d["name"],
                 owner=owner,
                 defaults={
                     "device_type": d["device_type"],
                     "location": d["location"],
+                    "latitude": lat,
+                    "longitude": lng,
                     "ip_address": d["ip_address"],
                     "status": d["status"],
                     "description": d["description"],
@@ -211,7 +252,7 @@ class Command(BaseCommand):
         analysis_count = 0
         for device in Device.objects.filter(status__in=['online', 'error']):
             status_key = device.status if device.status in SAMPLE_ANALYSIS else 'online'
-            anomaly, result_text = SAMPLE_ANALYSIS[status_key]
+            anomaly, scores, result_text = SAMPLE_ANALYSIS[status_key]
             AIAnalysis.objects.get_or_create(
                 device=device,
                 defaults={
@@ -219,6 +260,7 @@ class Command(BaseCommand):
                     "result": result_text,
                     "anomalies_detected": anomaly,
                     "language": "en",
+                    "scores": scores,
                 },
             )
             analysis_count += 1

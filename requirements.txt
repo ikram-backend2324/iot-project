@@ -4,3 +4,4 @@ requests>=2.31.0
 python-dotenv>=1.0.0
 gunicorn
 whitenoise
+psutil>=5.9.0  # optional: only needed to run the local PC agent (iot_pc_agent.py)

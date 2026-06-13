@@ -6,10 +6,31 @@ A Django web application that analyzes IoT device performance using AI (via Open
 - 🔐 User registration & login system
 - 📡 IoT device management (add, edit, delete, filter)
 - 📊 Metric logging with interactive charts
-- 🧠 AI-powered device analysis (via OpenRouter - Mistral 7B)
-- 🌍 3-language support: English, Russian, Uzbek
+- 🧠 AI-powered device analysis with rich, multi-section reports + visual health scorecards
+- 🧊 Interactive 3D visualizations (Three.js): live network globe, per-device 3D models, animated PC tower
+- 🗺️ Maps (Leaflet, dark theme): device fleet map, per-device location, click-to-pick coordinates on the form
+- 💻 "Check My PC" — reads browser-available stats (RAM, cores, battery, network, GPU) and runs an AI diagnosis,
+     with an optional downloadable Python agent for real CPU temperature / exact RAM / disk usage
+- 🌍 3-language support (English, Russian, Uzbek) — translates the entire UI **and** the AI's response language
+- 📱 Fully responsive, including the 3D scenes and maps
 - 🎨 Dark cyberpunk UI with Space Mono + Sora fonts
 - ⚡ Django Jazzmin admin panel
+
+## What's new in this version
+- The AI analysis is now rendered as clean, formatted sections (no raw markdown/asterisks) with numbered
+  recommendation lists, an anomaly flag, and a colored risk pill — replacing the previous plain-text dump.
+- Each analysis returns a machine-readable scorecard (health, performance, reliability, efficiency, security,
+  risk) shown as animated score bars.
+- Switching the language now also makes the AI respond in that language.
+
+### Optional PC agent
+The "Check My PC" page can use a tiny local agent for hardware data the browser can't expose:
+```bash
+pip install psutil
+python iot_pc_agent.py --serve     # then click "Use Local Agent" on the page
+# or:  python iot_pc_agent.py       # prints JSON you can inspect
+```
+The agent only serves data on 127.0.0.1 and uploads nothing by itself.
 
 ## Quick Start
 

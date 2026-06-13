@@ -12,4 +12,8 @@ urlpatterns = [
     path('devices/<int:pk>/analyze/', views.analyze_device, name='analyze_device'),
     path('analyses/', views.analysis_list, name='analysis_list'),
     path('analyses/<int:pk>/', views.analysis_detail, name='analysis_detail'),
+    path('pc-check/', views.pc_check, name='pc_check'),
+    path('pc-check/analyze/', views.pc_analyze, name='pc_analyze'),
+    path('pc-check/result/<int:pk>/', views.pc_result, name='pc_result'),
+    path('pc-check/agent/', views.pc_agent_download, name='pc_agent_download'),
 ]

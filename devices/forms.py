@@ -24,11 +24,13 @@ class LoginForm(AuthenticationForm):
 class DeviceForm(forms.ModelForm):
     class Meta:
         model = Device
-        fields = ('name', 'device_type', 'location', 'ip_address', 'status', 'description')
+        fields = ('name', 'device_type', 'location', 'latitude', 'longitude', 'ip_address', 'status', 'description')
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-input', 'placeholder': ' '}),
             'device_type': forms.Select(attrs={'class': 'form-select'}),
             'location': forms.TextInput(attrs={'class': 'form-input', 'placeholder': ' '}),
+            'latitude': forms.NumberInput(attrs={'class': 'form-input', 'placeholder': ' ', 'step': 'any'}),
+            'longitude': forms.NumberInput(attrs={'class': 'form-input', 'placeholder': ' ', 'step': 'any'}),
             'ip_address': forms.TextInput(attrs={'class': 'form-input', 'placeholder': ' '}),
             'status': forms.Select(attrs={'class': 'form-select'}),
             'description': forms.Textarea(attrs={'class': 'form-input', 'placeholder': ' ', 'rows': 3}),

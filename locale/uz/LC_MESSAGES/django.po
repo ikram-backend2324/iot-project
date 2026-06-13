@@ -1,324 +1,847 @@
 # Uzbek translations for IoT Analyzer
 msgid ""
 msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 03:00+0500\n"
+"Language: uz\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uz\n"
 
-msgid "English"
-msgstr "Inglizcha"
-
-msgid "Russian"
-msgstr "Ruscha"
-
-msgid "Uzbek"
-msgstr "O'zbekcha"
-
-msgid "Dashboard"
-msgstr "Boshqaruv paneli"
-
-msgid "Overview"
-msgstr "Umumiy ko'rinish"
-
-msgid "All Devices"
-msgstr "Barcha qurilmalar"
-
-msgid "Add Device"
-msgstr "Qurilma qo'shish"
-
-msgid "AI Analyses"
-msgstr "AI Tahlillari"
-
-msgid "Analytics"
-msgstr "Tahlil"
-
-msgid "Devices"
-msgstr "Qurilmalar"
-
-msgid "User"
-msgstr "Foydalanuvchi"
-
-msgid "Logout"
-msgstr "Chiqish"
-
-msgid "Sign In"
-msgstr "Kirish"
-
-msgid "Create Account"
-msgstr "Hisob yaratish"
-
-msgid "Username"
-msgstr "Foydalanuvchi nomi"
-
-msgid "Password"
-msgstr "Parol"
-
-msgid "Email"
-msgstr "Elektron pochta"
-
-msgid "Confirm Password"
-msgstr "Parolni tasdiqlash"
-
-msgid "Don't have an account?"
-msgstr "Hisobingiz yo'qmi?"
-
-msgid "Register"
-msgstr "Ro'yxatdan o'tish"
-
-msgid "Already have an account?"
-msgstr "Hisobingiz bormi?"
-
-msgid "Invalid username or password."
-msgstr "Noto'g'ri foydalanuvchi nomi yoki parol."
-
+#: devices/auth_views.py:17
 msgid "Welcome! Your account has been created."
 msgstr "Xush kelibsiz! Hisobingiz yaratildi."
 
+#: devices/auth_views.py:35
+msgid "Invalid username or password."
+msgstr "Noto'g'ri foydalanuvchi nomi yoki parol."
+
+#: devices/auth_views.py:44
 msgid "You have been logged out."
 msgstr "Tizimdan chiqdingiz."
 
-msgid "System"
-msgstr "Tizim"
-
-msgid "Total Devices"
-msgstr "Jami qurilmalar"
-
-msgid "Online"
-msgstr "Onlayn"
-
-msgid "Errors"
-msgstr "Xatolar"
-
-msgid "Recent Devices"
-msgstr "So'nggi qurilmalar"
-
-msgid "Recent AI Analyses"
-msgstr "So'nggi AI tahlillari"
-
-msgid "Recent Metric Readings"
-msgstr "So'nggi o'lchov ko'rsatkichlari"
-
-msgid "Name"
-msgstr "Nomi"
-
-msgid "Type"
-msgstr "Turi"
-
-msgid "Status"
-msgstr "Holat"
-
-msgid "Device"
-msgstr "Qurilma"
-
-msgid "Date"
-msgstr "Sana"
-
-msgid "Anomaly"
-msgstr "Anomaliya"
-
-msgid "Normal"
-msgstr "Normal"
-
-msgid "No devices yet."
-msgstr "Hali qurilmalar yo'q."
-
-msgid "Add your first device"
-msgstr "Birinchi qurilmani qo'shing"
-
-msgid "No analyses yet."
-msgstr "Hali tahlillar yo'q."
-
-msgid "Device Name"
-msgstr "Qurilma nomi"
-
-msgid "Device Type"
-msgstr "Qurilma turi"
-
-msgid "Location"
-msgstr "Joylashuv"
-
-msgid "IP Address"
-msgstr "IP manzil"
-
-msgid "Description"
-msgstr "Tavsif"
-
-msgid "Save"
-msgstr "Saqlash"
-
-msgid "Cancel"
-msgstr "Bekor qilish"
-
-msgid "Edit Device"
-msgstr "Qurilmani tahrirlash"
-
-msgid "Back"
-msgstr "Orqaga"
-
-msgid "Log Metric"
-msgstr "Ko'rsatkich yozish"
-
-msgid "Metric Name"
-msgstr "Ko'rsatkich nomi"
-
-msgid "Value"
-msgstr "Qiymat"
-
-msgid "Unit"
-msgstr "Birlik"
-
-msgid "Metric Charts"
-msgstr "Ko'rsatkich grafiklari"
-
-msgid "Raw Metrics"
-msgstr "Xom ko'rsatkichlar"
-
-msgid "AI Analysis History"
-msgstr "AI tahlil tarixi"
-
-msgid "View Full"
-msgstr "To'liq ko'rish"
-
-msgid "Anomaly Detected"
-msgstr "Anomaliya aniqlandi"
-
-msgid "Healthy"
-msgstr "Normal"
-
-msgid "Analyze with AI"
-msgstr "AI bilan tahlil qilish"
-
-msgid "Edit"
-msgstr "Tahrirlash"
-
-msgid "View"
-msgstr "Ko'rish"
-
-msgid "Filter"
-msgstr "Filtr"
-
-msgid "Clear"
-msgstr "Tozalash"
-
-msgid "All"
-msgstr "Barchasi"
-
-msgid "Added"
-msgstr "Qo'shilgan"
-
-msgid "Actions"
-msgstr "Amallar"
-
-msgid "Device added successfully!"
-msgstr "Qurilma muvaffaqiyatli qo'shildi!"
-
-msgid "Device updated successfully!"
-msgstr "Qurilma yangilandi!"
-
-msgid "Device deleted successfully!"
-msgstr "Qurilma o'chirildi!"
-
-msgid "Metric logged successfully!"
-msgstr "Ko'rsatkich yozildi!"
-
-msgid "Analysis completed!"
-msgstr "Tahlil yakunlandi!"
-
-msgid "Analysis failed"
-msgstr "Tahlil amalga oshmadi"
-
-msgid "Analysis Result"
-msgstr "Tahlil natijasi"
-
-msgid "Language"
-msgstr "Til"
-
-msgid "AI-Powered IoT Analysis Platform"
-msgstr "AI asosida IoT tahlil platformasi"
-
-msgid "Are you sure?"
-msgstr "Ishonchingiz komilmi?"
-
-msgid "You are about to permanently delete"
-msgstr "Siz butunlay o'chirmoqchisiz"
-
-msgid "This will also delete all its metrics and analyses. This action cannot be undone."
-msgstr "Bu barcha ko'rsatkichlar va tahlillarni ham o'chiradi. Bu amalni bekor qilib bo'lmaydi."
-
-msgid "Yes, Delete"
-msgstr "Ha, o'chirish"
-
-msgid "Delete Device"
-msgstr "Qurilmani o'chirish"
-
-msgid "Delete"
-msgstr "O'chirish"
-
-msgid "Prompt Used"
-msgstr "Ishlatilgan so'rov"
-
-msgid "show"
-msgstr "ko'rsatish"
-
-msgid "Back to Device"
-msgstr "Qurilmaga qaytish"
-
-msgid "All Analyses"
-msgstr "Barcha tahlillar"
-
-msgid "No metrics logged yet."
-msgstr "Ko'rsatkichlar hali yo'q."
-
-msgid "Log first metric"
-msgstr "Birinchi ko'rsatkichni yozing"
-
-msgid "No AI analyses yet."
-msgstr "AI tahlillari hali yo'q."
-
-msgid "Go to Devices"
-msgstr "Qurilmalarga o'tish"
-
-msgid "Recorded"
-msgstr "Yozilgan"
-
-msgid "Preview"
-msgstr "Ko'rinish"
-
-msgid "Action"
-msgstr "Amal"
-
-msgid "No devices found."
-msgstr "Qurilmalar topilmadi."
-
+#: devices/models.py:8
 msgid "Sensor"
 msgstr "Sensor"
 
+#: devices/models.py:9
 msgid "Actuator"
 msgstr "Aktuator"
 
+#: devices/models.py:10
 msgid "Gateway"
 msgstr "Shlyuz"
 
+#: devices/models.py:11
 msgid "Camera"
 msgstr "Kamera"
 
+#: devices/models.py:12
 msgid "Controller"
 msgstr "Kontroller"
 
+#: devices/models.py:13
 msgid "Other"
 msgstr "Boshqa"
 
+#: devices/models.py:16 devices/templates/devices/dashboard.html:18
+#: devices/templates/devices/dashboard.html:33
+msgid "Online"
+msgstr "Onlayn"
+
+#: devices/models.py:17 devices/templates/devices/dashboard.html:19
 msgid "Offline"
 msgstr "Oflayn"
 
+#: devices/models.py:18 devices/templates/devices/dashboard.html:20
 msgid "Error"
 msgstr "Xato"
 
+#: devices/models.py:19 devices/templates/devices/dashboard.html:21
 msgid "Maintenance"
 msgstr "Texnik xizmat"
 
+#: devices/models.py:22 devices/models.py:81
+msgid "Owner"
+msgstr "Egasi"
+
+#: devices/models.py:23 devices/templates/devices/device_form.html:18
+msgid "Device Name"
+msgstr "Qurilma nomi"
+
+#: devices/models.py:24 devices/templates/devices/device_form.html:23
+msgid "Device Type"
+msgstr "Qurilma turi"
+
+#: devices/models.py:25 devices/templates/devices/device_form.html:28
+#: devices/templates/devices/device_list.html:57
+msgid "Location"
+msgstr "Joylashuv"
+
+#: devices/models.py:26 devices/templates/devices/device_form.html:33
+msgid "Latitude"
+msgstr "Kenglik"
+
+#: devices/models.py:27 devices/templates/devices/device_form.html:37
+msgid "Longitude"
+msgstr "Uzunlik"
+
+#: devices/models.py:28 devices/templates/devices/device_form.html:46
+#: devices/templates/devices/device_list.html:58
+msgid "IP Address"
+msgstr "IP manzil"
+
+#: devices/models.py:29 devices/templates/devices/analysis_detail.html:30
+#: devices/templates/devices/dashboard.html:57
+#: devices/templates/devices/dashboard.html:89
+#: devices/templates/devices/device_form.html:51
+#: devices/templates/devices/device_list.html:25
+#: devices/templates/devices/device_list.html:56
+msgid "Status"
+msgstr "Holat"
+
+#: devices/models.py:30 devices/templates/devices/device_form.html:55
+msgid "Description"
+msgstr "Tavsif"
+
+#: devices/models.py:31
+#, fuzzy
+#| msgid "Create Account"
+msgid "Created At"
+msgstr "Hisob yaratish"
+
+#: devices/models.py:32
+msgid "Updated At"
+msgstr "Yangilangan"
+
+#: devices/models.py:35 devices/models.py:47 devices/models.py:63
+#: devices/templates/devices/analysis_detail.html:18
+#: devices/templates/devices/analysis_list.html:17
+#: devices/templates/devices/dashboard.html:88
+#: devices/templates/devices/dashboard.html:127
+#: devices/templates/devices/device_confirm_delete.html:7
+#: devices/templates/devices/metric_form.html:12
+msgid "Device"
+msgstr "Qurilma"
+
+#: devices/models.py:36 devices/templates/devices/base.html:403
+#: devices/templates/devices/device_list.html:4
+#: devices/templates/devices/device_list.html:5
+#: devices/templates/devices/device_list.html:9
+msgid "Devices"
+msgstr "Qurilmalar"
+
+#: devices/models.py:48 devices/templates/devices/metric_form.html:18
+msgid "Metric Name"
+msgstr "Ko'rsatkich nomi"
+
+#: devices/models.py:49 devices/templates/devices/dashboard.html:129
+#: devices/templates/devices/device_detail.html:126
+#: devices/templates/devices/metric_form.html:24
+msgid "Value"
+msgstr "Qiymat"
+
+#: devices/models.py:50 devices/templates/devices/metric_form.html:28
+msgid "Unit"
+msgstr "Birlik"
+
+#: devices/models.py:51
+#, fuzzy
+#| msgid "Recorded"
+msgid "Recorded At"
+msgstr "Yozilgan"
+
+#: devices/models.py:54
+#, fuzzy
+#| msgid "Device Name"
+msgid "Device Metric"
+msgstr "Qurilma nomi"
+
+#: devices/models.py:55
+#, fuzzy
+#| msgid "Devices"
+msgid "Device Metrics"
+msgstr "Qurilmalar"
+
+#: devices/models.py:64 devices/templates/devices/analysis_detail.html:57
+msgid "Prompt Used"
+msgstr "Ishlatilgan so'rov"
+
+#: devices/models.py:65 devices/models.py:83
+#: devices/templates/devices/analysis_detail.html:4
+msgid "Analysis Result"
+msgstr "Tahlil natijasi"
+
+#: devices/models.py:66
+#, fuzzy
+#| msgid "Anomaly Detected"
+msgid "Anomalies Detected"
+msgstr "Anomaliya aniqlandi"
+
+#: devices/models.py:67 devices/models.py:85
+#: devices/templates/devices/analysis_detail.html:26
+#: devices/templates/devices/analysis_list.html:19
+#: devices/templates/devices/pc_result.html:15
+msgid "Language"
+msgstr "Til"
+
+#: devices/models.py:68 devices/models.py:84
+msgid "Scores"
+msgstr "Baholar"
+
+#: devices/models.py:69 devices/models.py:86
+#, fuzzy
+#| msgid "Analyze with AI"
+msgid "Analyzed At"
+msgstr "AI bilan tahlil qilish"
+
+#: devices/models.py:72 devices/templates/devices/analysis_detail.html:5
+#: devices/templates/devices/analysis_detail.html:9
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "AI Analysis"
+msgstr "AI Tahlillari"
+
+#: devices/models.py:73 devices/templates/devices/analysis_list.html:4
+#: devices/templates/devices/analysis_list.html:5
+#: devices/templates/devices/base.html:413
+#: devices/templates/devices/dashboard.html:41
+msgid "AI Analyses"
+msgstr "AI Tahlillari"
+
+#: devices/models.py:82
+msgid "Collected Stats"
+msgstr "Yig'ilgan ma'lumotlar"
+
+#: devices/models.py:89
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "PC Analysis"
+msgstr "AI Tahlillari"
+
+#: devices/models.py:90
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "PC Analyses"
+msgstr "AI Tahlillari"
+
+#: devices/templates/devices/analysis_detail.html:11
+msgid "Back to Device"
+msgstr "Qurilmaga qaytish"
+
+#: devices/templates/devices/analysis_detail.html:12
+msgid "All Analyses"
+msgstr "Barcha tahlillar"
+
+#: devices/templates/devices/analysis_detail.html:22
+#: devices/templates/devices/analysis_list.html:20
+#: devices/templates/devices/dashboard.html:90
+#: devices/templates/devices/pc_check.html:93
+#: devices/templates/devices/pc_result.html:14
+msgid "Date"
+msgstr "Sana"
+
+#: devices/templates/devices/analysis_detail.html:33
+#: devices/templates/devices/device_detail.html:159
+msgid "Anomaly Detected"
+msgstr "Anomaliya aniqlandi"
+
+#: devices/templates/devices/analysis_detail.html:35
+#: devices/templates/devices/analysis_list.html:35
+#: devices/templates/devices/dashboard.html:101
+msgid "Normal"
+msgstr "Normal"
+
+#: devices/templates/devices/analysis_detail.html:44
+#: devices/templates/devices/pc_result.html:37
+msgid "Health Scorecard"
+msgstr "Holat kartasi"
+
+#: devices/templates/devices/analysis_detail.html:51
+msgid "Detailed Diagnosis"
+msgstr "Batafsil tashxis"
+
+#: devices/templates/devices/analysis_detail.html:57
+msgid "show"
+msgstr "ko'rsatish"
+
+#: devices/templates/devices/analysis_detail.html:80
+#: devices/templates/devices/pc_check.html:93
+#: devices/templates/devices/pc_result.html:84
+#, fuzzy
+#| msgid "Healthy"
+msgid "Health"
+msgstr "Normal"
+
+#: devices/templates/devices/analysis_detail.html:80
+#: devices/templates/devices/pc_result.html:84
+msgid "Performance"
+msgstr "Unumdorlik"
+
+#: devices/templates/devices/analysis_detail.html:81
+#: devices/templates/devices/pc_result.html:85
+msgid "Reliability"
+msgstr "Ishonchlilik"
+
+#: devices/templates/devices/analysis_detail.html:81
+#: devices/templates/devices/pc_result.html:85
+msgid "Efficiency"
+msgstr "Samaradorlik"
+
+#: devices/templates/devices/analysis_detail.html:82
+#: devices/templates/devices/pc_result.html:85
+msgid "Security"
+msgstr "Xavfsizlik"
+
+#: devices/templates/devices/analysis_list.html:9
+#: devices/templates/devices/analyze_loading.html:327
+msgid "AI"
+msgstr "SI"
+
+#: devices/templates/devices/analysis_list.html:9
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "Analyses"
+msgstr "AI Tahlillari"
+
+#: devices/templates/devices/analysis_list.html:18
+#, fuzzy
+#| msgid "Status"
+msgid "Result Status"
+msgstr "Holat"
+
+#: devices/templates/devices/analysis_list.html:21
+msgid "Preview"
+msgstr "Ko'rinish"
+
+#: devices/templates/devices/analysis_list.html:22
+#: devices/templates/devices/pc_check.html:93
+msgid "Action"
+msgstr "Amal"
+
+#: devices/templates/devices/analysis_list.html:33
+#: devices/templates/devices/dashboard.html:99
+msgid "Anomaly"
+msgstr "Anomaliya"
+
+#: devices/templates/devices/analysis_list.html:41
+#: devices/templates/devices/device_list.html:74
+#: devices/templates/devices/pc_check.html:100
+msgid "View"
+msgstr "Ko'rish"
+
+#: devices/templates/devices/analysis_list.html:51
+msgid "No AI analyses yet."
+msgstr "AI tahlillari hali yo'q."
+
+#: devices/templates/devices/analysis_list.html:52
+msgid "Go to Devices"
+msgstr "Qurilmalarga o'tish"
+
+#: devices/templates/devices/analyze_loading.html:7
+#: devices/templates/devices/analyze_loading.html:327
+#, fuzzy
+#| msgid "Analytics"
+msgid "Analyzing"
+msgstr "Tahlil"
+
+#: devices/templates/devices/analyze_loading.html:334
+msgid "Collecting device metrics"
+msgstr "Qurilma ko'rsatkichlari yig'ilmoqda"
+
+#: devices/templates/devices/analyze_loading.html:338
+msgid "Building analysis prompt"
+msgstr "Tahlil so'rovi tuzilmoqda"
+
+#: devices/templates/devices/analyze_loading.html:342
+msgid "Sending to AI model"
+msgstr "SI modeliga yuborilmoqda"
+
+#: devices/templates/devices/analyze_loading.html:346
+msgid "Processing response"
+msgstr "Javob qayta ishlanmoqda"
+
+#: devices/templates/devices/analyze_loading.html:355
+msgid "This may take a few seconds"
+msgstr "Bu bir necha soniya olishi mumkin"
+
+#: devices/templates/devices/auth/auth_base.html:118
+msgid "AI-Powered IoT Analysis Platform"
+msgstr "AI asosida IoT tahlil platformasi"
+
+#: devices/templates/devices/auth/login.html:4
+msgid "Login"
+msgstr "Kirish"
+
+#: devices/templates/devices/auth/login.html:7
+#: devices/templates/devices/auth/login.html:23
+#: devices/templates/devices/auth/register.html:33
+msgid "Sign In"
+msgstr "Kirish"
+
+#: devices/templates/devices/auth/login.html:11
+#: devices/templates/devices/auth/register.html:11
+msgid "Username"
+msgstr "Foydalanuvchi nomi"
+
+#: devices/templates/devices/auth/login.html:16
+#: devices/templates/devices/auth/register.html:21
+msgid "Password"
+msgstr "Parol"
+
+#: devices/templates/devices/auth/login.html:26
+msgid "Don't have an account?"
+msgstr "Hisobingiz yo'qmi?"
+
+#: devices/templates/devices/auth/login.html:26
+#: devices/templates/devices/auth/register.html:4
+msgid "Register"
+msgstr "Ro'yxatdan o'tish"
+
+#: devices/templates/devices/auth/register.html:7
+#: devices/templates/devices/auth/register.html:30
+msgid "Create Account"
+msgstr "Hisob yaratish"
+
+#: devices/templates/devices/auth/register.html:16
+msgid "Email"
+msgstr "Elektron pochta"
+
+#: devices/templates/devices/auth/register.html:26
+msgid "Confirm Password"
+msgstr "Parolni tasdiqlash"
+
+#: devices/templates/devices/auth/register.html:33
+msgid "Already have an account?"
+msgstr "Hisobingiz bormi?"
+
+#: devices/templates/devices/base.html:398
+#: devices/templates/devices/dashboard.html:9
+msgid "Overview"
+msgstr "Umumiy ko'rinish"
+
+#: devices/templates/devices/base.html:400
+#: devices/templates/devices/dashboard.html:4
+#: devices/templates/devices/dashboard.html:5
+msgid "Dashboard"
+msgstr "Boshqaruv paneli"
+
+#: devices/templates/devices/base.html:405
+msgid "All Devices"
+msgstr "Barcha qurilmalar"
+
+#: devices/templates/devices/base.html:408
+#: devices/templates/devices/dashboard.html:10
+#: devices/templates/devices/device_list.html:10 devices/views.py:140
+msgid "Add Device"
+msgstr "Qurilma qo'shish"
+
+#: devices/templates/devices/base.html:411
+msgid "Analytics"
+msgstr "Tahlil"
+
+#: devices/templates/devices/base.html:416
+#: devices/templates/devices/pc_check.html:4
+#: devices/templates/devices/pc_check.html:5
+#: devices/templates/devices/pc_check.html:64
+msgid "Check My PC"
+msgstr "Kompyuterimni tekshirish"
+
+#: devices/templates/devices/base.html:426
+msgid "User"
+msgstr "Foydalanuvchi"
+
+#: devices/templates/devices/base.html:430
+msgid "Logout"
+msgstr "Chiqish"
+
+#: devices/templates/devices/dashboard.html:9
+msgid "System"
+msgstr "Tizim"
+
+#: devices/templates/devices/dashboard.html:16
+msgid "Live Network — drag to rotate"
+msgstr "Jonli tarmoq — aylantirish uchun torting"
+
+#: devices/templates/devices/dashboard.html:29
+msgid "Total Devices"
+msgstr "Jami qurilmalar"
+
+#: devices/templates/devices/dashboard.html:37
+msgid "Errors"
+msgstr "Xatolar"
+
+#: devices/templates/devices/dashboard.html:49
+msgid "Recent Devices"
+msgstr "So'nggi qurilmalar"
+
+#: devices/templates/devices/dashboard.html:55
+#: devices/templates/devices/device_list.html:54
+msgid "Name"
+msgstr "Nomi"
+
+#: devices/templates/devices/dashboard.html:56
+#: devices/templates/devices/device_list.html:34
+#: devices/templates/devices/device_list.html:55
+msgid "Type"
+msgstr "Turi"
+
+#: devices/templates/devices/dashboard.html:74
+msgid "No devices yet."
+msgstr "Hali qurilmalar yo'q."
+
+#: devices/templates/devices/dashboard.html:75
+#: devices/templates/devices/device_list.html:89
+msgid "Add your first device"
+msgstr "Birinchi qurilmani qo'shing"
+
+#: devices/templates/devices/dashboard.html:82
+msgid "Recent AI Analyses"
+msgstr "So'nggi AI tahlillari"
+
+#: devices/templates/devices/dashboard.html:113
+msgid "No analyses yet."
+msgstr "Hali tahlillar yo'q."
+
+#: devices/templates/devices/dashboard.html:122
+msgid "Recent Metric Readings"
+msgstr "So'nggi o'lchov ko'rsatkichlari"
+
+#: devices/templates/devices/dashboard.html:128
+#: devices/templates/devices/device_detail.html:125
+#: devices/templates/devices/metric_form.html:7
+#, fuzzy
+#| msgid "Log Metric"
+msgid "Metric"
+msgstr "Ko'rsatkich yozish"
+
+#: devices/templates/devices/dashboard.html:130
+msgid "Recorded"
+msgstr "Yozilgan"
+
+#: devices/templates/devices/device_confirm_delete.html:3
+#: devices/templates/devices/device_confirm_delete.html:4
+msgid "Delete Device"
+msgstr "Qurilmani o'chirish"
+
+#: devices/templates/devices/device_confirm_delete.html:7
+msgid "Delete"
+msgstr "O'chirish"
+
+#: devices/templates/devices/device_confirm_delete.html:12
+msgid "Are you sure?"
+msgstr "Ishonchingiz komilmi?"
+
+#: devices/templates/devices/device_confirm_delete.html:14
+msgid "You are about to permanently delete"
+msgstr "Siz butunlay o'chirmoqchisiz"
+
+#: devices/templates/devices/device_confirm_delete.html:15
+msgid "This will also delete all its metrics and analyses. This action cannot be undone."
+msgstr "Bu barcha ko'rsatkichlar va tahlillarni ham o'chiradi. Bu amalni bekor qilib bo'lmaydi."
+
+#: devices/templates/devices/device_confirm_delete.html:19
+msgid "Yes, Delete"
+msgstr "Ha, o'chirish"
+
+#: devices/templates/devices/device_confirm_delete.html:20
+#: devices/templates/devices/device_form.html:61
+#: devices/templates/devices/device_form.html:63
+#: devices/templates/devices/metric_form.html:35
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+#: devices/templates/devices/device_detail.html:60
+#: devices/templates/devices/metric_form.html:3
+#: devices/templates/devices/metric_form.html:4
+#: devices/templates/devices/metric_form.html:34
+msgid "Log Metric"
+msgstr "Ko'rsatkich yozish"
+
+#: devices/templates/devices/device_detail.html:61
+msgid "Analyze with AI"
+msgstr "AI bilan tahlil qilish"
+
+#: devices/templates/devices/device_detail.html:62
+msgid "Edit"
+msgstr "Tahrirlash"
+
+#: devices/templates/devices/device_detail.html:71
+msgid "3D Model — drag to rotate"
+msgstr "3D model — aylantirish uchun torting"
+
+#: devices/templates/devices/device_detail.html:86
+msgid "No location coordinates set."
+msgstr "Joylashuv koordinatalari belgilanmagan."
+
+#: devices/templates/devices/device_detail.html:87
+msgid "Add coordinates"
+msgstr "Koordinatalar qo'shish"
+
+#: devices/templates/devices/device_detail.html:96
+msgid "Metric Charts"
+msgstr "Ko'rsatkich grafiklari"
+
+#: devices/templates/devices/device_detail.html:111
+#: devices/templates/devices/device_detail.html:144
+msgid "No metrics logged yet."
+msgstr "Ko'rsatkichlar hali yo'q."
+
+#: devices/templates/devices/device_detail.html:112
+msgid "Log first metric"
+msgstr "Birinchi ko'rsatkichni yozing"
+
+#: devices/templates/devices/device_detail.html:119
+msgid "Raw Metrics"
+msgstr "Xom ko'rsatkichlar"
+
+#: devices/templates/devices/device_detail.html:127
+msgid "Time"
+msgstr "Vaqt"
+
+#: devices/templates/devices/device_detail.html:152
+msgid "AI Analysis History"
+msgstr "AI tahlil tarixi"
+
+#: devices/templates/devices/device_detail.html:161
+#: devices/templates/devices/pc_check.html:36
+msgid "Healthy"
+msgstr "Normal"
+
+#: devices/templates/devices/device_detail.html:165
+msgid "View Full"
+msgstr "To'liq ko'rish"
+
+#: devices/templates/devices/device_detail.html:173
+msgid "No analyses yet. Click 'Analyze with AI' to start."
+msgstr "Hozircha tahlillar yo'q. Boshlash uchun «SI bilan tahlil» tugmasini bosing."
+
+#: devices/templates/devices/device_form.html:10
+#: devices/templates/devices/metric_form.html:8
+msgid "Back"
+msgstr "Orqaga"
+
+#: devices/templates/devices/device_form.html:42
+msgid "Pick on map (click to set coordinates)"
+msgstr "Xaritada tanlang (koordinatalarni belgilash uchun bosing)"
+
+#: devices/templates/devices/device_form.html:59
+msgid "Save"
+msgstr "Saqlash"
+
+#: devices/templates/devices/device_list.html:9
+#: devices/templates/devices/device_list.html:27
+#: devices/templates/devices/device_list.html:36
+msgid "All"
+msgstr "Barchasi"
+
+#: devices/templates/devices/device_list.html:16
+#, fuzzy
+#| msgid "Location"
+msgid "Device Locations"
+msgstr "Joylashuv"
+
+#: devices/templates/devices/device_list.html:42
+msgid "Filter"
+msgstr "Filtr"
+
+#: devices/templates/devices/device_list.html:44
+msgid "Clear"
+msgstr "Tozalash"
+
+#: devices/templates/devices/device_list.html:59
+msgid "Added"
+msgstr "Qo'shilgan"
+
+#: devices/templates/devices/device_list.html:60
+msgid "Actions"
+msgstr "Amallar"
+
+#: devices/templates/devices/device_list.html:88
+msgid "No devices found."
+msgstr "Qurilmalar topilmadi."
+
+#: devices/templates/devices/metric_form.html:7
+#, fuzzy
+#| msgid "Logout"
+msgid "Log"
+msgstr "Chiqish"
+
+#: devices/templates/devices/metric_form.html:20
 msgid "e.g.: temperature, cpu_usage, humidity, voltage"
 msgstr "masalan: harorat, protsessor_yuklama, namlik, kuchlanish"
 
-msgid "e.g.: °C, %, V, MHz"
+#: devices/templates/devices/metric_form.html:30
+#, fuzzy, python-format
+#| msgid "e.g.: °C, %, V, MHz"
+msgid "e.g.: °C, %%, V, MHz"
 msgstr "masalan: °C, %, V, MGts"
+
+#: devices/templates/devices/pc_check.html:27
+msgid "Check My"
+msgstr "Tekshirish"
+
+#: devices/templates/devices/pc_check.html:27
+#: devices/templates/devices/pc_result.html:9
+msgid "PC"
+msgstr "Kompyuter"
+
+#: devices/templates/devices/pc_check.html:34
+msgid "Live System — drag to rotate"
+msgstr "Jonli tizim — aylantirish uchun torting"
+
+#: devices/templates/devices/pc_check.html:37
+msgid "Warm"
+msgstr "Iliq"
+
+#: devices/templates/devices/pc_check.html:38
+msgid "Hot / Full"
+msgstr "Issiq / To'la"
+
+#: devices/templates/devices/pc_check.html:45
+msgid "Live Readings"
+msgstr "Jonli ko'rsatkichlar"
+
+#: devices/templates/devices/pc_check.html:47
+msgid "RAM"
+msgstr "Tezkor xotira"
+
+#: devices/templates/devices/pc_check.html:48
+msgid "CPU Cores"
+msgstr "Protsessor yadrolari"
+
+#: devices/templates/devices/pc_check.html:49
+msgid "Temperature"
+msgstr "Harorat"
+
+#: devices/templates/devices/pc_check.html:50
+msgid "Storage"
+msgstr "Xotira"
+
+#: devices/templates/devices/pc_check.html:51
+msgid "Battery"
+msgstr "Batareya"
+
+#: devices/templates/devices/pc_check.html:52
+msgid "Network"
+msgstr "Tarmoq"
+
+#: devices/templates/devices/pc_check.html:56
+msgid "Browser scan"
+msgstr "Brauzer orqali tekshirish"
+
+#: devices/templates/devices/pc_check.html:57
+msgid "Local agent"
+msgstr "Lokal agent"
+
+#: devices/templates/devices/pc_check.html:62
+msgid "Reads what your browser safely exposes (RAM, cores, battery, network, GPU). CPU temperature and exact disk usage need the optional local agent."
+msgstr "Brauzer xavfsiz taqdim etadigan ma'lumotlarni o'qiydi (xotira, yadrolar, batareya, tarmoq, GPU). Protsessor harorati va aniq disk ishlatilishi uchun qo'shimcha lokal agent kerak."
+
+#: devices/templates/devices/pc_check.html:69
+msgid "For real temperature, exact RAM and disk usage, run the tiny local agent:"
+msgstr "Haqiqiy harorat, aniq xotira va disk ishlatilishi uchun kichik lokal agentni ishga tushiring:"
+
+#: devices/templates/devices/pc_check.html:71
+msgid "Download agent"
+msgstr "Agentni yuklab olish"
+
+#: devices/templates/devices/pc_check.html:74
+msgid "then press the button below."
+msgstr "keyin quyidagi tugmani bosing."
+
+#: devices/templates/devices/pc_check.html:76
+msgid "Use Local Agent"
+msgstr "Lokal agentdan foydalanish"
+
+#: devices/templates/devices/pc_check.html:82
+msgid "Analyzing your system"
+msgstr "Tizimingiz tahlil qilinmoqda"
+
+#: devices/templates/devices/pc_check.html:89
+#, fuzzy
+#| msgid "Recent Devices"
+msgid "Recent PC Checks"
+msgstr "So'nggi qurilmalar"
+
+#: devices/templates/devices/pc_check.html:93
+#: devices/templates/devices/pc_result.html:16
+msgid "Risk"
+msgstr "Xavf"
+
+#: devices/templates/devices/pc_check.html:107
+msgid "No PC checks yet. Press 'Check My PC' to run your first scan."
+msgstr "Hozircha tekshiruvlar yo'q. Birinchi tekshiruvni boshlash uchun «Kompyuterimni tekshirish» tugmasini bosing."
+
+#: devices/templates/devices/pc_check.html:222
+msgid "Could not reach the local agent. Make sure it is running with --serve."
+msgstr "Lokal agentga ulanib bo'lmadi. U --serve bilan ishga tushganiga ishonch hosil qiling."
+
+#: devices/templates/devices/pc_result.html:4
+#: devices/templates/devices/pc_result.html:5
+msgid "PC Diagnosis"
+msgstr "Kompyuter tashxisi"
+
+#: devices/templates/devices/pc_result.html:9
+msgid "Diagnosis"
+msgstr "Tashxis"
+
+#: devices/templates/devices/pc_result.html:10
+msgid "Run another check"
+msgstr "Yana tekshiruv o'tkazish"
+
+#: devices/templates/devices/pc_result.html:23
+#, fuzzy
+#| msgid "System"
+msgid "Your System"
+msgstr "Tizim"
+
+#: devices/templates/devices/pc_result.html:28
+msgid "Collected Data"
+msgstr "Yig'ilgan ma'lumotlar"
+
+#: devices/templates/devices/pc_result.html:43
+msgid "Diagnosis & Recommendations"
+msgstr "Tashxis va tavsiyalar"
+
+#: devices/templates/devices/pc_result.html:79
+msgid "No data"
+msgstr "Ma'lumot yo'q"
+
+#: devices/views.py:136
+msgid "Device added successfully!"
+msgstr "Qurilma muvaffaqiyatli qo'shildi!"
+
+#: devices/views.py:150
+msgid "Device updated successfully!"
+msgstr "Qurilma yangilandi!"
+
+#: devices/views.py:154
+msgid "Edit Device"
+msgstr "Qurilmani tahrirlash"
+
+#: devices/views.py:162
+msgid "Device deleted successfully!"
+msgstr "Qurilma o'chirildi!"
+
+#: devices/views.py:176
+msgid "Metric logged successfully!"
+msgstr "Ko'rsatkich yozildi!"
+
+#: devices/views.py:200
+msgid "Analysis completed!"
+msgstr "Tahlil yakunlandi!"
+
+#: iot_analyzer/settings.py:91
+msgid "English"
+msgstr "Inglizcha"
+
+#: iot_analyzer/settings.py:92
+msgid "Russian"
+msgstr "Ruscha"
+
+#: iot_analyzer/settings.py:93
+msgid "Uzbek"
+msgstr "O'zbekcha"
+
+#~ msgid "Analysis failed"
+#~ msgstr "Tahlil amalga oshmadi"

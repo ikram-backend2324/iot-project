@@ -10,6 +10,19 @@
     <a href="{% url 'add_device' %}" class="btn btn-primary">➕ {% trans "Add Device" %}</a>
 </div>
 
+<!-- 3D Network Globe -->
+<div class="card mb-16" style="padding: 0; overflow: hidden;">
+    <div class="viz-host" id="globeHost">
+        <div class="viz-badge">{% trans "Live Network — drag to rotate" %}</div>
+        <div class="viz-legend">
+            <span><i style="background:#00ff88"></i>{% trans "Online" %}</span>
+            <span><i style="background:#4a5568"></i>{% trans "Offline" %}</span>
+            <span><i style="background:#ff4444"></i>{% trans "Error" %}</span>
+            <span><i style="background:#ffaa00"></i>{% trans "Maintenance" %}</span>
+        </div>
+    </div>
+</div>
+
 <!-- Stats -->
 <div class="stats-grid">
     <div class="stat-card cyan">
@@ -131,4 +144,13 @@
     </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    var devices = {{ scene_devices_json|safe }};
+    if (window.IoTViz) IoTViz.networkGlobe(document.getElementById('globeHost'), devices);
+})();
+</script>
 {% endblock %}

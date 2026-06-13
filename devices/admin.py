@@ -38,3 +38,14 @@ class AIAnalysisAdmin(admin.ModelAdmin):
     list_filter = ('anomalies_detected', 'language', 'analyzed_at')
     search_fields = ('device__name',)
     readonly_fields = ('analyzed_at', 'prompt_used', 'result')
+
+
+from .models import PCAnalysis
+
+
+@admin.register(PCAnalysis)
+class PCAnalysisAdmin(admin.ModelAdmin):
+    list_display = ('owner', 'language', 'analyzed_at')
+    list_filter = ('language', 'analyzed_at')
+    search_fields = ('owner__username',)
+    readonly_fields = ('analyzed_at', 'stats', 'result', 'scores')

@@ -1,324 +1,847 @@
 # Russian translations for IoT Analyzer
 msgid ""
 msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 03:00+0500\n"
+"Language: ru\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
 
-msgid "English"
-msgstr "Английский"
-
-msgid "Russian"
-msgstr "Русский"
-
-msgid "Uzbek"
-msgstr "Узбекский"
-
-msgid "Dashboard"
-msgstr "Панель управления"
-
-msgid "Overview"
-msgstr "Обзор"
-
-msgid "All Devices"
-msgstr "Все устройства"
-
-msgid "Add Device"
-msgstr "Добавить устройство"
-
-msgid "AI Analyses"
-msgstr "ИИ-Анализы"
-
-msgid "Analytics"
-msgstr "Аналитика"
-
-msgid "Devices"
-msgstr "Устройства"
-
-msgid "User"
-msgstr "Пользователь"
-
-msgid "Logout"
-msgstr "Выйти"
-
-msgid "Sign In"
-msgstr "Войти"
-
-msgid "Create Account"
-msgstr "Создать аккаунт"
-
-msgid "Username"
-msgstr "Имя пользователя"
-
-msgid "Password"
-msgstr "Пароль"
-
-msgid "Email"
-msgstr "Электронная почта"
-
-msgid "Confirm Password"
-msgstr "Подтвердить пароль"
-
-msgid "Don't have an account?"
-msgstr "Нет аккаунта?"
-
-msgid "Register"
-msgstr "Регистрация"
-
-msgid "Already have an account?"
-msgstr "Уже есть аккаунт?"
-
-msgid "Invalid username or password."
-msgstr "Неверное имя пользователя или пароль."
-
+#: devices/auth_views.py:17
 msgid "Welcome! Your account has been created."
 msgstr "Добро пожаловать! Ваш аккаунт создан."
 
+#: devices/auth_views.py:35
+msgid "Invalid username or password."
+msgstr "Неверное имя пользователя или пароль."
+
+#: devices/auth_views.py:44
 msgid "You have been logged out."
 msgstr "Вы вышли из системы."
 
-msgid "System"
-msgstr "Система"
-
-msgid "Total Devices"
-msgstr "Всего устройств"
-
-msgid "Online"
-msgstr "Онлайн"
-
-msgid "Errors"
-msgstr "Ошибки"
-
-msgid "Recent Devices"
-msgstr "Последние устройства"
-
-msgid "Recent AI Analyses"
-msgstr "Последние ИИ-анализы"
-
-msgid "Recent Metric Readings"
-msgstr "Последние показатели"
-
-msgid "Name"
-msgstr "Название"
-
-msgid "Type"
-msgstr "Тип"
-
-msgid "Status"
-msgstr "Статус"
-
-msgid "Device"
-msgstr "Устройство"
-
-msgid "Date"
-msgstr "Дата"
-
-msgid "Anomaly"
-msgstr "Аномалия"
-
-msgid "Normal"
-msgstr "Норма"
-
-msgid "No devices yet."
-msgstr "Устройств пока нет."
-
-msgid "Add your first device"
-msgstr "Добавить первое устройство"
-
-msgid "No analyses yet."
-msgstr "Анализов пока нет."
-
-msgid "Device Name"
-msgstr "Название устройства"
-
-msgid "Device Type"
-msgstr "Тип устройства"
-
-msgid "Location"
-msgstr "Местоположение"
-
-msgid "IP Address"
-msgstr "IP-адрес"
-
-msgid "Description"
-msgstr "Описание"
-
-msgid "Save"
-msgstr "Сохранить"
-
-msgid "Cancel"
-msgstr "Отмена"
-
-msgid "Edit Device"
-msgstr "Редактировать устройство"
-
-msgid "Back"
-msgstr "Назад"
-
-msgid "Log Metric"
-msgstr "Записать показатель"
-
-msgid "Metric Name"
-msgstr "Название показателя"
-
-msgid "Value"
-msgstr "Значение"
-
-msgid "Unit"
-msgstr "Единица"
-
-msgid "Metric Charts"
-msgstr "Графики"
-
-msgid "Raw Metrics"
-msgstr "Показатели"
-
-msgid "AI Analysis History"
-msgstr "История анализов"
-
-msgid "View Full"
-msgstr "Открыть"
-
-msgid "Anomaly Detected"
-msgstr "Обнаружена аномалия"
-
-msgid "Healthy"
-msgstr "Норма"
-
-msgid "Analyze with AI"
-msgstr "Анализировать с ИИ"
-
-msgid "Edit"
-msgstr "Редактировать"
-
-msgid "View"
-msgstr "Просмотр"
-
-msgid "Filter"
-msgstr "Фильтр"
-
-msgid "Clear"
-msgstr "Сбросить"
-
-msgid "All"
-msgstr "Все"
-
-msgid "Added"
-msgstr "Добавлено"
-
-msgid "Actions"
-msgstr "Действия"
-
-msgid "Device added successfully!"
-msgstr "Устройство успешно добавлено!"
-
-msgid "Device updated successfully!"
-msgstr "Устройство успешно обновлено!"
-
-msgid "Device deleted successfully!"
-msgstr "Устройство удалено!"
-
-msgid "Metric logged successfully!"
-msgstr "Показатель записан!"
-
-msgid "Analysis completed!"
-msgstr "Анализ завершён!"
-
-msgid "Analysis failed"
-msgstr "Анализ не удался"
-
-msgid "Analysis Result"
-msgstr "Результат анализа"
-
-msgid "Language"
-msgstr "Язык"
-
-msgid "AI-Powered IoT Analysis Platform"
-msgstr "Платформа ИИ-анализа IoT"
-
-msgid "Are you sure?"
-msgstr "Вы уверены?"
-
-msgid "You are about to permanently delete"
-msgstr "Вы собираетесь удалить"
-
-msgid "This will also delete all its metrics and analyses. This action cannot be undone."
-msgstr "Это также удалит все показатели и анализы. Действие необратимо."
-
-msgid "Yes, Delete"
-msgstr "Да, удалить"
-
-msgid "Delete Device"
-msgstr "Удалить устройство"
-
-msgid "Delete"
-msgstr "Удалить"
-
-msgid "Prompt Used"
-msgstr "Использованный запрос"
-
-msgid "show"
-msgstr "показать"
-
-msgid "Back to Device"
-msgstr "К устройству"
-
-msgid "All Analyses"
-msgstr "Все анализы"
-
-msgid "No metrics logged yet."
-msgstr "Нет записанных показателей."
-
-msgid "Log first metric"
-msgstr "Записать первый показатель"
-
-msgid "No AI analyses yet."
-msgstr "Анализов ИИ пока нет."
-
-msgid "Go to Devices"
-msgstr "К устройствам"
-
-msgid "Recorded"
-msgstr "Записано"
-
-msgid "Preview"
-msgstr "Предпросмотр"
-
-msgid "Action"
-msgstr "Действие"
-
-msgid "No devices found."
-msgstr "Устройства не найдены."
-
+#: devices/models.py:8
 msgid "Sensor"
 msgstr "Датчик"
 
+#: devices/models.py:9
 msgid "Actuator"
 msgstr "Исполнительный механизм"
 
+#: devices/models.py:10
 msgid "Gateway"
 msgstr "Шлюз"
 
+#: devices/models.py:11
 msgid "Camera"
 msgstr "Камера"
 
+#: devices/models.py:12
 msgid "Controller"
 msgstr "Контроллер"
 
+#: devices/models.py:13
 msgid "Other"
 msgstr "Другое"
 
+#: devices/models.py:16 devices/templates/devices/dashboard.html:18
+#: devices/templates/devices/dashboard.html:33
+msgid "Online"
+msgstr "Онлайн"
+
+#: devices/models.py:17 devices/templates/devices/dashboard.html:19
 msgid "Offline"
 msgstr "Офлайн"
 
+#: devices/models.py:18 devices/templates/devices/dashboard.html:20
 msgid "Error"
 msgstr "Ошибка"
 
+#: devices/models.py:19 devices/templates/devices/dashboard.html:21
 msgid "Maintenance"
 msgstr "Обслуживание"
 
+#: devices/models.py:22 devices/models.py:81
+msgid "Owner"
+msgstr "Владелец"
+
+#: devices/models.py:23 devices/templates/devices/device_form.html:18
+msgid "Device Name"
+msgstr "Название устройства"
+
+#: devices/models.py:24 devices/templates/devices/device_form.html:23
+msgid "Device Type"
+msgstr "Тип устройства"
+
+#: devices/models.py:25 devices/templates/devices/device_form.html:28
+#: devices/templates/devices/device_list.html:57
+msgid "Location"
+msgstr "Местоположение"
+
+#: devices/models.py:26 devices/templates/devices/device_form.html:33
+msgid "Latitude"
+msgstr "Широта"
+
+#: devices/models.py:27 devices/templates/devices/device_form.html:37
+msgid "Longitude"
+msgstr "Долгота"
+
+#: devices/models.py:28 devices/templates/devices/device_form.html:46
+#: devices/templates/devices/device_list.html:58
+msgid "IP Address"
+msgstr "IP-адрес"
+
+#: devices/models.py:29 devices/templates/devices/analysis_detail.html:30
+#: devices/templates/devices/dashboard.html:57
+#: devices/templates/devices/dashboard.html:89
+#: devices/templates/devices/device_form.html:51
+#: devices/templates/devices/device_list.html:25
+#: devices/templates/devices/device_list.html:56
+msgid "Status"
+msgstr "Статус"
+
+#: devices/models.py:30 devices/templates/devices/device_form.html:55
+msgid "Description"
+msgstr "Описание"
+
+#: devices/models.py:31
+#, fuzzy
+#| msgid "Create Account"
+msgid "Created At"
+msgstr "Создать аккаунт"
+
+#: devices/models.py:32
+msgid "Updated At"
+msgstr "Обновлено"
+
+#: devices/models.py:35 devices/models.py:47 devices/models.py:63
+#: devices/templates/devices/analysis_detail.html:18
+#: devices/templates/devices/analysis_list.html:17
+#: devices/templates/devices/dashboard.html:88
+#: devices/templates/devices/dashboard.html:127
+#: devices/templates/devices/device_confirm_delete.html:7
+#: devices/templates/devices/metric_form.html:12
+msgid "Device"
+msgstr "Устройство"
+
+#: devices/models.py:36 devices/templates/devices/base.html:403
+#: devices/templates/devices/device_list.html:4
+#: devices/templates/devices/device_list.html:5
+#: devices/templates/devices/device_list.html:9
+msgid "Devices"
+msgstr "Устройства"
+
+#: devices/models.py:48 devices/templates/devices/metric_form.html:18
+msgid "Metric Name"
+msgstr "Название показателя"
+
+#: devices/models.py:49 devices/templates/devices/dashboard.html:129
+#: devices/templates/devices/device_detail.html:126
+#: devices/templates/devices/metric_form.html:24
+msgid "Value"
+msgstr "Значение"
+
+#: devices/models.py:50 devices/templates/devices/metric_form.html:28
+msgid "Unit"
+msgstr "Единица"
+
+#: devices/models.py:51
+#, fuzzy
+#| msgid "Recorded"
+msgid "Recorded At"
+msgstr "Записано"
+
+#: devices/models.py:54
+#, fuzzy
+#| msgid "Device Name"
+msgid "Device Metric"
+msgstr "Название устройства"
+
+#: devices/models.py:55
+#, fuzzy
+#| msgid "Devices"
+msgid "Device Metrics"
+msgstr "Устройства"
+
+#: devices/models.py:64 devices/templates/devices/analysis_detail.html:57
+msgid "Prompt Used"
+msgstr "Использованный запрос"
+
+#: devices/models.py:65 devices/models.py:83
+#: devices/templates/devices/analysis_detail.html:4
+msgid "Analysis Result"
+msgstr "Результат анализа"
+
+#: devices/models.py:66
+#, fuzzy
+#| msgid "Anomaly Detected"
+msgid "Anomalies Detected"
+msgstr "Обнаружена аномалия"
+
+#: devices/models.py:67 devices/models.py:85
+#: devices/templates/devices/analysis_detail.html:26
+#: devices/templates/devices/analysis_list.html:19
+#: devices/templates/devices/pc_result.html:15
+msgid "Language"
+msgstr "Язык"
+
+#: devices/models.py:68 devices/models.py:84
+msgid "Scores"
+msgstr "Оценки"
+
+#: devices/models.py:69 devices/models.py:86
+#, fuzzy
+#| msgid "Analyze with AI"
+msgid "Analyzed At"
+msgstr "Анализировать с ИИ"
+
+#: devices/models.py:72 devices/templates/devices/analysis_detail.html:5
+#: devices/templates/devices/analysis_detail.html:9
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "AI Analysis"
+msgstr "ИИ-Анализы"
+
+#: devices/models.py:73 devices/templates/devices/analysis_list.html:4
+#: devices/templates/devices/analysis_list.html:5
+#: devices/templates/devices/base.html:413
+#: devices/templates/devices/dashboard.html:41
+msgid "AI Analyses"
+msgstr "ИИ-Анализы"
+
+#: devices/models.py:82
+msgid "Collected Stats"
+msgstr "Собранные данные"
+
+#: devices/models.py:89
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "PC Analysis"
+msgstr "ИИ-Анализы"
+
+#: devices/models.py:90
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "PC Analyses"
+msgstr "ИИ-Анализы"
+
+#: devices/templates/devices/analysis_detail.html:11
+msgid "Back to Device"
+msgstr "К устройству"
+
+#: devices/templates/devices/analysis_detail.html:12
+msgid "All Analyses"
+msgstr "Все анализы"
+
+#: devices/templates/devices/analysis_detail.html:22
+#: devices/templates/devices/analysis_list.html:20
+#: devices/templates/devices/dashboard.html:90
+#: devices/templates/devices/pc_check.html:93
+#: devices/templates/devices/pc_result.html:14
+msgid "Date"
+msgstr "Дата"
+
+#: devices/templates/devices/analysis_detail.html:33
+#: devices/templates/devices/device_detail.html:159
+msgid "Anomaly Detected"
+msgstr "Обнаружена аномалия"
+
+#: devices/templates/devices/analysis_detail.html:35
+#: devices/templates/devices/analysis_list.html:35
+#: devices/templates/devices/dashboard.html:101
+msgid "Normal"
+msgstr "Норма"
+
+#: devices/templates/devices/analysis_detail.html:44
+#: devices/templates/devices/pc_result.html:37
+msgid "Health Scorecard"
+msgstr "Карта состояния"
+
+#: devices/templates/devices/analysis_detail.html:51
+msgid "Detailed Diagnosis"
+msgstr "Подробная диагностика"
+
+#: devices/templates/devices/analysis_detail.html:57
+msgid "show"
+msgstr "показать"
+
+#: devices/templates/devices/analysis_detail.html:80
+#: devices/templates/devices/pc_check.html:93
+#: devices/templates/devices/pc_result.html:84
+#, fuzzy
+#| msgid "Healthy"
+msgid "Health"
+msgstr "Норма"
+
+#: devices/templates/devices/analysis_detail.html:80
+#: devices/templates/devices/pc_result.html:84
+msgid "Performance"
+msgstr "Производительность"
+
+#: devices/templates/devices/analysis_detail.html:81
+#: devices/templates/devices/pc_result.html:85
+msgid "Reliability"
+msgstr "Надёжность"
+
+#: devices/templates/devices/analysis_detail.html:81
+#: devices/templates/devices/pc_result.html:85
+msgid "Efficiency"
+msgstr "Эффективность"
+
+#: devices/templates/devices/analysis_detail.html:82
+#: devices/templates/devices/pc_result.html:85
+msgid "Security"
+msgstr "Безопасность"
+
+#: devices/templates/devices/analysis_list.html:9
+#: devices/templates/devices/analyze_loading.html:327
+msgid "AI"
+msgstr "ИИ"
+
+#: devices/templates/devices/analysis_list.html:9
+#, fuzzy
+#| msgid "AI Analyses"
+msgid "Analyses"
+msgstr "ИИ-Анализы"
+
+#: devices/templates/devices/analysis_list.html:18
+#, fuzzy
+#| msgid "Status"
+msgid "Result Status"
+msgstr "Статус"
+
+#: devices/templates/devices/analysis_list.html:21
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: devices/templates/devices/analysis_list.html:22
+#: devices/templates/devices/pc_check.html:93
+msgid "Action"
+msgstr "Действие"
+
+#: devices/templates/devices/analysis_list.html:33
+#: devices/templates/devices/dashboard.html:99
+msgid "Anomaly"
+msgstr "Аномалия"
+
+#: devices/templates/devices/analysis_list.html:41
+#: devices/templates/devices/device_list.html:74
+#: devices/templates/devices/pc_check.html:100
+msgid "View"
+msgstr "Просмотр"
+
+#: devices/templates/devices/analysis_list.html:51
+msgid "No AI analyses yet."
+msgstr "Анализов ИИ пока нет."
+
+#: devices/templates/devices/analysis_list.html:52
+msgid "Go to Devices"
+msgstr "К устройствам"
+
+#: devices/templates/devices/analyze_loading.html:7
+#: devices/templates/devices/analyze_loading.html:327
+#, fuzzy
+#| msgid "Analytics"
+msgid "Analyzing"
+msgstr "Аналитика"
+
+#: devices/templates/devices/analyze_loading.html:334
+msgid "Collecting device metrics"
+msgstr "Сбор метрик устройства"
+
+#: devices/templates/devices/analyze_loading.html:338
+msgid "Building analysis prompt"
+msgstr "Формирование запроса анализа"
+
+#: devices/templates/devices/analyze_loading.html:342
+msgid "Sending to AI model"
+msgstr "Отправка в модель ИИ"
+
+#: devices/templates/devices/analyze_loading.html:346
+msgid "Processing response"
+msgstr "Обработка ответа"
+
+#: devices/templates/devices/analyze_loading.html:355
+msgid "This may take a few seconds"
+msgstr "Это может занять несколько секунд"
+
+#: devices/templates/devices/auth/auth_base.html:118
+msgid "AI-Powered IoT Analysis Platform"
+msgstr "Платформа ИИ-анализа IoT"
+
+#: devices/templates/devices/auth/login.html:4
+msgid "Login"
+msgstr "Вход"
+
+#: devices/templates/devices/auth/login.html:7
+#: devices/templates/devices/auth/login.html:23
+#: devices/templates/devices/auth/register.html:33
+msgid "Sign In"
+msgstr "Войти"
+
+#: devices/templates/devices/auth/login.html:11
+#: devices/templates/devices/auth/register.html:11
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: devices/templates/devices/auth/login.html:16
+#: devices/templates/devices/auth/register.html:21
+msgid "Password"
+msgstr "Пароль"
+
+#: devices/templates/devices/auth/login.html:26
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+#: devices/templates/devices/auth/login.html:26
+#: devices/templates/devices/auth/register.html:4
+msgid "Register"
+msgstr "Регистрация"
+
+#: devices/templates/devices/auth/register.html:7
+#: devices/templates/devices/auth/register.html:30
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+#: devices/templates/devices/auth/register.html:16
+msgid "Email"
+msgstr "Электронная почта"
+
+#: devices/templates/devices/auth/register.html:26
+msgid "Confirm Password"
+msgstr "Подтвердить пароль"
+
+#: devices/templates/devices/auth/register.html:33
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+#: devices/templates/devices/base.html:398
+#: devices/templates/devices/dashboard.html:9
+msgid "Overview"
+msgstr "Обзор"
+
+#: devices/templates/devices/base.html:400
+#: devices/templates/devices/dashboard.html:4
+#: devices/templates/devices/dashboard.html:5
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: devices/templates/devices/base.html:405
+msgid "All Devices"
+msgstr "Все устройства"
+
+#: devices/templates/devices/base.html:408
+#: devices/templates/devices/dashboard.html:10
+#: devices/templates/devices/device_list.html:10 devices/views.py:140
+msgid "Add Device"
+msgstr "Добавить устройство"
+
+#: devices/templates/devices/base.html:411
+msgid "Analytics"
+msgstr "Аналитика"
+
+#: devices/templates/devices/base.html:416
+#: devices/templates/devices/pc_check.html:4
+#: devices/templates/devices/pc_check.html:5
+#: devices/templates/devices/pc_check.html:64
+msgid "Check My PC"
+msgstr "Проверить мой ПК"
+
+#: devices/templates/devices/base.html:426
+msgid "User"
+msgstr "Пользователь"
+
+#: devices/templates/devices/base.html:430
+msgid "Logout"
+msgstr "Выйти"
+
+#: devices/templates/devices/dashboard.html:9
+msgid "System"
+msgstr "Система"
+
+#: devices/templates/devices/dashboard.html:16
+msgid "Live Network — drag to rotate"
+msgstr "Сеть в реальном времени — перетащите для вращения"
+
+#: devices/templates/devices/dashboard.html:29
+msgid "Total Devices"
+msgstr "Всего устройств"
+
+#: devices/templates/devices/dashboard.html:37
+msgid "Errors"
+msgstr "Ошибки"
+
+#: devices/templates/devices/dashboard.html:49
+msgid "Recent Devices"
+msgstr "Последние устройства"
+
+#: devices/templates/devices/dashboard.html:55
+#: devices/templates/devices/device_list.html:54
+msgid "Name"
+msgstr "Название"
+
+#: devices/templates/devices/dashboard.html:56
+#: devices/templates/devices/device_list.html:34
+#: devices/templates/devices/device_list.html:55
+msgid "Type"
+msgstr "Тип"
+
+#: devices/templates/devices/dashboard.html:74
+msgid "No devices yet."
+msgstr "Устройств пока нет."
+
+#: devices/templates/devices/dashboard.html:75
+#: devices/templates/devices/device_list.html:89
+msgid "Add your first device"
+msgstr "Добавить первое устройство"
+
+#: devices/templates/devices/dashboard.html:82
+msgid "Recent AI Analyses"
+msgstr "Последние ИИ-анализы"
+
+#: devices/templates/devices/dashboard.html:113
+msgid "No analyses yet."
+msgstr "Анализов пока нет."
+
+#: devices/templates/devices/dashboard.html:122
+msgid "Recent Metric Readings"
+msgstr "Последние показатели"
+
+#: devices/templates/devices/dashboard.html:128
+#: devices/templates/devices/device_detail.html:125
+#: devices/templates/devices/metric_form.html:7
+#, fuzzy
+#| msgid "Log Metric"
+msgid "Metric"
+msgstr "Записать показатель"
+
+#: devices/templates/devices/dashboard.html:130
+msgid "Recorded"
+msgstr "Записано"
+
+#: devices/templates/devices/device_confirm_delete.html:3
+#: devices/templates/devices/device_confirm_delete.html:4
+msgid "Delete Device"
+msgstr "Удалить устройство"
+
+#: devices/templates/devices/device_confirm_delete.html:7
+msgid "Delete"
+msgstr "Удалить"
+
+#: devices/templates/devices/device_confirm_delete.html:12
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: devices/templates/devices/device_confirm_delete.html:14
+msgid "You are about to permanently delete"
+msgstr "Вы собираетесь удалить"
+
+#: devices/templates/devices/device_confirm_delete.html:15
+msgid "This will also delete all its metrics and analyses. This action cannot be undone."
+msgstr "Это также удалит все показатели и анализы. Действие необратимо."
+
+#: devices/templates/devices/device_confirm_delete.html:19
+msgid "Yes, Delete"
+msgstr "Да, удалить"
+
+#: devices/templates/devices/device_confirm_delete.html:20
+#: devices/templates/devices/device_form.html:61
+#: devices/templates/devices/device_form.html:63
+#: devices/templates/devices/metric_form.html:35
+msgid "Cancel"
+msgstr "Отмена"
+
+#: devices/templates/devices/device_detail.html:60
+#: devices/templates/devices/metric_form.html:3
+#: devices/templates/devices/metric_form.html:4
+#: devices/templates/devices/metric_form.html:34
+msgid "Log Metric"
+msgstr "Записать показатель"
+
+#: devices/templates/devices/device_detail.html:61
+msgid "Analyze with AI"
+msgstr "Анализировать с ИИ"
+
+#: devices/templates/devices/device_detail.html:62
+msgid "Edit"
+msgstr "Редактировать"
+
+#: devices/templates/devices/device_detail.html:71
+msgid "3D Model — drag to rotate"
+msgstr "3D-модель — перетащите для вращения"
+
+#: devices/templates/devices/device_detail.html:86
+msgid "No location coordinates set."
+msgstr "Координаты местоположения не заданы."
+
+#: devices/templates/devices/device_detail.html:87
+msgid "Add coordinates"
+msgstr "Добавить координаты"
+
+#: devices/templates/devices/device_detail.html:96
+msgid "Metric Charts"
+msgstr "Графики"
+
+#: devices/templates/devices/device_detail.html:111
+#: devices/templates/devices/device_detail.html:144
+msgid "No metrics logged yet."
+msgstr "Нет записанных показателей."
+
+#: devices/templates/devices/device_detail.html:112
+msgid "Log first metric"
+msgstr "Записать первый показатель"
+
+#: devices/templates/devices/device_detail.html:119
+msgid "Raw Metrics"
+msgstr "Показатели"
+
+#: devices/templates/devices/device_detail.html:127
+msgid "Time"
+msgstr "Время"
+
+#: devices/templates/devices/device_detail.html:152
+msgid "AI Analysis History"
+msgstr "История анализов"
+
+#: devices/templates/devices/device_detail.html:161
+#: devices/templates/devices/pc_check.html:36
+msgid "Healthy"
+msgstr "Норма"
+
+#: devices/templates/devices/device_detail.html:165
+msgid "View Full"
+msgstr "Открыть"
+
+#: devices/templates/devices/device_detail.html:173
+msgid "No analyses yet. Click 'Analyze with AI' to start."
+msgstr "Анализов пока нет. Нажмите «Анализ с ИИ», чтобы начать."
+
+#: devices/templates/devices/device_form.html:10
+#: devices/templates/devices/metric_form.html:8
+msgid "Back"
+msgstr "Назад"
+
+#: devices/templates/devices/device_form.html:42
+msgid "Pick on map (click to set coordinates)"
+msgstr "Выберите на карте (нажмите, чтобы задать координаты)"
+
+#: devices/templates/devices/device_form.html:59
+msgid "Save"
+msgstr "Сохранить"
+
+#: devices/templates/devices/device_list.html:9
+#: devices/templates/devices/device_list.html:27
+#: devices/templates/devices/device_list.html:36
+msgid "All"
+msgstr "Все"
+
+#: devices/templates/devices/device_list.html:16
+#, fuzzy
+#| msgid "Location"
+msgid "Device Locations"
+msgstr "Местоположение"
+
+#: devices/templates/devices/device_list.html:42
+msgid "Filter"
+msgstr "Фильтр"
+
+#: devices/templates/devices/device_list.html:44
+msgid "Clear"
+msgstr "Сбросить"
+
+#: devices/templates/devices/device_list.html:59
+msgid "Added"
+msgstr "Добавлено"
+
+#: devices/templates/devices/device_list.html:60
+msgid "Actions"
+msgstr "Действия"
+
+#: devices/templates/devices/device_list.html:88
+msgid "No devices found."
+msgstr "Устройства не найдены."
+
+#: devices/templates/devices/metric_form.html:7
+#, fuzzy
+#| msgid "Logout"
+msgid "Log"
+msgstr "Выйти"
+
+#: devices/templates/devices/metric_form.html:20
 msgid "e.g.: temperature, cpu_usage, humidity, voltage"
 msgstr "например: температура, загрузка_cpu, влажность, напряжение"
 
-msgid "e.g.: °C, %, V, MHz"
+#: devices/templates/devices/metric_form.html:30
+#, fuzzy, python-format
+#| msgid "e.g.: °C, %, V, MHz"
+msgid "e.g.: °C, %%, V, MHz"
 msgstr "например: °C, %, В, МГц"
+
+#: devices/templates/devices/pc_check.html:27
+msgid "Check My"
+msgstr "Проверить мой"
+
+#: devices/templates/devices/pc_check.html:27
+#: devices/templates/devices/pc_result.html:9
+msgid "PC"
+msgstr "ПК"
+
+#: devices/templates/devices/pc_check.html:34
+msgid "Live System — drag to rotate"
+msgstr "Система в реальном времени — перетащите для вращения"
+
+#: devices/templates/devices/pc_check.html:37
+msgid "Warm"
+msgstr "Тёплый"
+
+#: devices/templates/devices/pc_check.html:38
+msgid "Hot / Full"
+msgstr "Горячий / Заполнен"
+
+#: devices/templates/devices/pc_check.html:45
+msgid "Live Readings"
+msgstr "Показания в реальном времени"
+
+#: devices/templates/devices/pc_check.html:47
+msgid "RAM"
+msgstr "ОЗУ"
+
+#: devices/templates/devices/pc_check.html:48
+msgid "CPU Cores"
+msgstr "Ядра ЦП"
+
+#: devices/templates/devices/pc_check.html:49
+msgid "Temperature"
+msgstr "Температура"
+
+#: devices/templates/devices/pc_check.html:50
+msgid "Storage"
+msgstr "Хранилище"
+
+#: devices/templates/devices/pc_check.html:51
+msgid "Battery"
+msgstr "Батарея"
+
+#: devices/templates/devices/pc_check.html:52
+msgid "Network"
+msgstr "Сеть"
+
+#: devices/templates/devices/pc_check.html:56
+msgid "Browser scan"
+msgstr "Сканирование браузера"
+
+#: devices/templates/devices/pc_check.html:57
+msgid "Local agent"
+msgstr "Локальный агент"
+
+#: devices/templates/devices/pc_check.html:62
+msgid "Reads what your browser safely exposes (RAM, cores, battery, network, GPU). CPU temperature and exact disk usage need the optional local agent."
+msgstr "Считывает данные, которые безопасно предоставляет браузер (ОЗУ, ядра, батарея, сеть, GPU). Для температуры ЦП и точного использования диска нужен дополнительный локальный агент."
+
+#: devices/templates/devices/pc_check.html:69
+msgid "For real temperature, exact RAM and disk usage, run the tiny local agent:"
+msgstr "Для реальной температуры, точного объёма ОЗУ и использования диска запустите небольшой локальный агент:"
+
+#: devices/templates/devices/pc_check.html:71
+msgid "Download agent"
+msgstr "Скачать агент"
+
+#: devices/templates/devices/pc_check.html:74
+msgid "then press the button below."
+msgstr "затем нажмите кнопку ниже."
+
+#: devices/templates/devices/pc_check.html:76
+msgid "Use Local Agent"
+msgstr "Использовать локальный агент"
+
+#: devices/templates/devices/pc_check.html:82
+msgid "Analyzing your system"
+msgstr "Анализ вашей системы"
+
+#: devices/templates/devices/pc_check.html:89
+#, fuzzy
+#| msgid "Recent Devices"
+msgid "Recent PC Checks"
+msgstr "Последние устройства"
+
+#: devices/templates/devices/pc_check.html:93
+#: devices/templates/devices/pc_result.html:16
+msgid "Risk"
+msgstr "Риск"
+
+#: devices/templates/devices/pc_check.html:107
+msgid "No PC checks yet. Press 'Check My PC' to run your first scan."
+msgstr "Проверок ПК пока нет. Нажмите «Проверить мой ПК», чтобы выполнить первое сканирование."
+
+#: devices/templates/devices/pc_check.html:222
+msgid "Could not reach the local agent. Make sure it is running with --serve."
+msgstr "Не удалось подключиться к локальному агенту. Убедитесь, что он запущен с --serve."
+
+#: devices/templates/devices/pc_result.html:4
+#: devices/templates/devices/pc_result.html:5
+msgid "PC Diagnosis"
+msgstr "Диагностика ПК"
+
+#: devices/templates/devices/pc_result.html:9
+msgid "Diagnosis"
+msgstr "Диагностика"
+
+#: devices/templates/devices/pc_result.html:10
+msgid "Run another check"
+msgstr "Запустить ещё проверку"
+
+#: devices/templates/devices/pc_result.html:23
+#, fuzzy
+#| msgid "System"
+msgid "Your System"
+msgstr "Система"
+
+#: devices/templates/devices/pc_result.html:28
+msgid "Collected Data"
+msgstr "Собранные данные"
+
+#: devices/templates/devices/pc_result.html:43
+msgid "Diagnosis & Recommendations"
+msgstr "Диагностика и рекомендации"
+
+#: devices/templates/devices/pc_result.html:79
+msgid "No data"
+msgstr "Нет данных"
+
+#: devices/views.py:136
+msgid "Device added successfully!"
+msgstr "Устройство успешно добавлено!"
+
+#: devices/views.py:150
+msgid "Device updated successfully!"
+msgstr "Устройство успешно обновлено!"
+
+#: devices/views.py:154
+msgid "Edit Device"
+msgstr "Редактировать устройство"
+
+#: devices/views.py:162
+msgid "Device deleted successfully!"
+msgstr "Устройство удалено!"
+
+#: devices/views.py:176
+msgid "Metric logged successfully!"
+msgstr "Показатель записан!"
+
+#: devices/views.py:200
+msgid "Analysis completed!"
+msgstr "Анализ завершён!"
+
+#: iot_analyzer/settings.py:91
+msgid "English"
+msgstr "Английский"
+
+#: iot_analyzer/settings.py:92
+msgid "Russian"
+msgstr "Русский"
+
+#: iot_analyzer/settings.py:93
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#~ msgid "Analysis failed"
+#~ msgstr "Анализ не удался"

@@ -23,6 +23,8 @@ class Device(models.Model):
     name = models.CharField(max_length=200, verbose_name=_('Device Name'))
     device_type = models.CharField(max_length=50, choices=DEVICE_TYPES, default='sensor', verbose_name=_('Device Type'))
     location = models.CharField(max_length=300, blank=True, verbose_name=_('Location'))
+    latitude = models.FloatField(null=True, blank=True, verbose_name=_('Latitude'))
+    longitude = models.FloatField(null=True, blank=True, verbose_name=_('Longitude'))
     ip_address = models.GenericIPAddressField(null=True, blank=True, verbose_name=_('IP Address'))
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='offline', verbose_name=_('Status'))
     description = models.TextField(blank=True, verbose_name=_('Description'))
@@ -63,6 +65,7 @@ class AIAnalysis(models.Model):
     result = models.TextField(verbose_name=_('Analysis Result'))
     anomalies_detected = models.BooleanField(default=False, verbose_name=_('Anomalies Detected'))
     language = models.CharField(max_length=10, default='en', verbose_name=_('Language'))
+    scores = models.JSONField(default=dict, blank=True, verbose_name=_('Scores'))
     analyzed_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Analyzed At'))
 
     class Meta:
@@ -72,3 +75,20 @@ class AIAnalysis(models.Model):
 
     def __str__(self):
         return f"Analysis of {self.device.name} at {self.analyzed_at.strftime('%Y-%m-%d %H:%M')}"
+
+
+class PCAnalysis(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pc_analyses', verbose_name=_('Owner'))
+    stats = models.JSONField(default=dict, verbose_name=_('Collected Stats'))
+    result = models.TextField(verbose_name=_('Analysis Result'))
+    scores = models.JSONField(default=dict, blank=True, verbose_name=_('Scores'))
+    language = models.CharField(max_length=10, default='en', verbose_name=_('Language'))
+    analyzed_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Analyzed At'))
+
+    class Meta:
+        verbose_name = _('PC Analysis')
+        verbose_name_plural = _('PC Analyses')
+        ordering = ['-analyzed_at']
+
+    def __str__(self):
+        return f"PC analysis for {self.owner.username} at {self.analyzed_at.strftime('%Y-%m-%d %H:%M')}"

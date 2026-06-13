@@ -1,0 +1,227 @@
+{% extends "devices/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Check My PC" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "Check My PC" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+.pc-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; margin-bottom: 18px; }
+@media (max-width: 900px){ .pc-hero { grid-template-columns: 1fr; } }
+.live-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lstat { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 13px; }
+.lstat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); display:flex; align-items:center; gap:6px; }
+.lstat-value { font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; color: var(--accent-cyan); margin-top: 6px; }
+.lstat-value small { font-size: 11px; color: var(--text-muted); }
+.scan-btn { font-size: 15px; padding: 14px 26px; }
+.agent-box { background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.25); border-radius: 11px; padding: 16px; }
+.agent-box code { background: rgba(0,0,0,0.35); padding: 2px 7px; border-radius: 5px; font-size: 12px; color: var(--accent-cyan); }
+.tabs { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+.tab { padding:7px 14px; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; border:1px solid var(--border); background:rgba(255,255,255,0.03); color:var(--text-secondary); }
+.tab.active { background: rgba(0,212,255,0.1); color: var(--accent-cyan); border-color: rgba(0,212,255,0.3); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "Check My" %} <span>{% trans "PC" %}</span></h1>
+</div>
+
+<div class="pc-hero">
+    <!-- 3D PC tower -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="viz-host" id="pcHost">
+            <div class="viz-badge">{% trans "Live System — drag to rotate" %}</div>
+            <div class="viz-legend">
+                <span><i style="background:#00ff88"></i>{% trans "Healthy" %}</span>
+                <span><i style="background:#ffaa00"></i>{% trans "Warm" %}</span>
+                <span><i style="background:#ff4444"></i>{% trans "Hot / Full" %}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live readings + scan -->
+    <div class="card">
+        <div class="card-title">📡 {% trans "Live Readings" %}</div>
+        <div class="live-stats" id="liveStats">
+            <div class="lstat"><div class="lstat-label">🧠 {% trans "RAM" %}</div><div class="lstat-value" id="lv-ram">—</div></div>
+            <div class="lstat"><div class="lstat-label">⚙️ {% trans "CPU Cores" %}</div><div class="lstat-value" id="lv-cores">—</div></div>
+            <div class="lstat"><div class="lstat-label">🌡️ {% trans "Temperature" %}</div><div class="lstat-value" id="lv-temp">—</div></div>
+            <div class="lstat"><div class="lstat-label">💾 {% trans "Storage" %}</div><div class="lstat-value" id="lv-disk">—</div></div>
+            <div class="lstat"><div class="lstat-label">🔋 {% trans "Battery" %}</div><div class="lstat-value" id="lv-batt">—</div></div>
+            <div class="lstat"><div class="lstat-label">🌐 {% trans "Network" %}</div><div class="lstat-value" id="lv-net">—</div></div>
+        </div>
+
+        <div class="tabs mt-16">
+            <div class="tab active" data-mode="browser" onclick="setMode('browser')">🌐 {% trans "Browser scan" %}</div>
+            <div class="tab" data-mode="agent" onclick="setMode('agent')">🔌 {% trans "Local agent" %}</div>
+        </div>
+
+        <div id="browserPane">
+            <p class="text-muted" style="font-size:12px; margin-bottom:12px;">
+                {% trans "Reads what your browser safely exposes (RAM, cores, battery, network, GPU). CPU temperature and exact disk usage need the optional local agent." %}
+            </p>
+            <button class="btn btn-primary scan-btn" id="scanBtn" onclick="runScan()">🔍 {% trans "Check My PC" %}</button>
+        </div>
+
+        <div id="agentPane" style="display:none;">
+            <div class="agent-box">
+                <p style="font-size:13px; margin-bottom:10px;">{% trans "For real temperature, exact RAM and disk usage, run the tiny local agent:" %}</p>
+                <p style="font-size:12px; color:var(--text-secondary); line-height:1.9;">
+                    1) <a href="{% url 'pc_agent_download' %}" class="btn btn-secondary btn-sm">⬇ {% trans "Download agent" %}</a><br>
+                    2) <code>pip install psutil</code><br>
+                    3) <code>python iot_pc_agent.py --serve</code><br>
+                    4) {% trans "then press the button below." %}
+                </p>
+                <button class="btn btn-primary mt-16" id="agentBtn" onclick="runAgentScan()">🔌 {% trans "Use Local Agent" %}</button>
+                <p id="agentErr" style="display:none; color:#fca5a5; font-size:12px; margin-top:10px;"></p>
+            </div>
+        </div>
+
+        <div id="scanStatus" style="display:none; margin-top:14px; font-size:13px; color:var(--accent-cyan);">
+            <span class="dots">{% trans "Analyzing your system" %}</span>
+        </div>
+    </div>
+</div>
+
+<!-- Recent PC analyses -->
+<div class="card">
+    <div class="card-title">🕑 {% trans "Recent PC Checks" %}</div>
+    {% if recent %}
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>{% trans "Date" %}</th><th>{% trans "Health" %}</th><th>{% trans "Risk" %}</th><th>{% trans "Action" %}</th></tr></thead>
+            <tbody>
+            {% for r in recent %}
+            <tr>
+                <td class="text-mono">{{ r.analyzed_at|date:"d/m/Y H:i" }}</td>
+                <td class="text-mono" style="color: var(--accent-cyan);">{{ r.scores.health|default:"—" }}</td>
+                <td>{{ r.scores.risk|default:"—" }}</td>
+                <td><a href="{% url 'pc_result' r.pk %}" class="btn btn-secondary btn-sm">{% trans "View" %}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state"><div class="empty-icon">💻</div><p>{% trans "No PC checks yet. Press 'Check My PC' to run your first scan." %}</p></div>
+    {% endif %}
+</div>
+
+<form id="pcForm" style="display:none;">{% csrf_token %}</form>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+var lastMetrics = { temp: null, ram: 0, disk: null, load: 20 };
+
+function initPC(){
+    if (window.IoTViz) IoTViz.pcTower(document.getElementById('pcHost'), lastMetrics);
+}
+initPC();
+
+function setMode(m){
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('active', t.dataset.mode===m); });
+    document.getElementById('browserPane').style.display = m==='browser' ? 'block':'none';
+    document.getElementById('agentPane').style.display = m==='agent' ? 'block':'none';
+}
+
+function fmtGB(x){ return x != null ? x + ' <small>GB</small>' : '—'; }
+
+function collectBrowserStats(){
+    var s = { source: 'browser' };
+    var nav = window.navigator;
+    if (nav.deviceMemory) { s.ram_estimate_gb = nav.deviceMemory; document.getElementById('lv-ram').innerHTML = fmtGB(nav.deviceMemory) + ' <small>(est)</small>'; lastMetrics.ram = Math.min(100, 60); }
+    else document.getElementById('lv-ram').textContent = 'N/A';
+
+    if (nav.hardwareConcurrency){ s.cpu_logical_cores = nav.hardwareConcurrency; document.getElementById('lv-cores').textContent = nav.hardwareConcurrency; }
+    s.platform = nav.platform || 'unknown';
+    s.user_agent = nav.userAgent;
+    s.language = nav.language;
+
+    // GPU via WebGL
+    try {
+        var gl = document.createElement('canvas').getContext('webgl');
+        var dbg = gl && gl.getExtension('WEBGL_debug_renderer_info');
+        if (dbg) s.gpu = gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL);
+    } catch(e){}
+
+    // Network
+    var c = nav.connection || nav.mozConnection || nav.webkitConnection;
+    if (c){ s.network_type = c.effectiveType; s.downlink_mbps = c.downlink;
+        document.getElementById('lv-net').textContent = (c.effectiveType||'?'); }
+    else document.getElementById('lv-net').textContent = 'N/A';
+
+    document.getElementById('lv-temp').innerHTML = 'N/A <small>(agent)</small>';
+    document.getElementById('lv-disk').innerHTML = 'N/A <small>(agent)</small>';
+
+    // storage estimate
+    if (nav.storage && nav.storage.estimate){
+        return nav.storage.estimate().then(function(est){
+            if (est.quota){ s.storage_quota_gb = +(est.quota/(1024**3)).toFixed(1); s.storage_used_gb = +(est.usage/(1024**3)).toFixed(2); }
+            return finishBatteryAndReturn(s);
+        });
+    }
+    return finishBatteryAndReturn(s);
+}
+
+function finishBatteryAndReturn(s){
+    if (navigator.getBattery){
+        return navigator.getBattery().then(function(b){
+            s.battery_percent = Math.round(b.level*100); s.battery_charging = b.charging;
+            document.getElementById('lv-batt').textContent = Math.round(b.level*100)+'%';
+            return s;
+        }).catch(function(){ document.getElementById('lv-batt').textContent='N/A'; return s; });
+    }
+    document.getElementById('lv-batt').textContent='N/A';
+    return Promise.resolve(s);
+}
+
+function showScanning(on){
+    document.getElementById('scanStatus').style.display = on ? 'block':'none';
+    document.getElementById('scanBtn').disabled = on;
+    var ab = document.getElementById('agentBtn'); if (ab) ab.disabled = on;
+}
+
+function submitStats(stats){
+    showScanning(true);
+    var token = document.querySelector('#pcForm [name=csrfmiddlewaretoken]').value;
+    fetch("{% url 'pc_analyze' %}", {
+        method:'POST',
+        headers:{'Content-Type':'application/json','X-CSRFToken':token},
+        body: JSON.stringify({ stats: stats })
+    }).then(function(r){ return r.json(); })
+      .then(function(d){
+          if (d.success && d.redirect){ window.location.href = d.redirect; }
+          else { showScanning(false); alert(d.error || 'Analysis failed'); }
+      }).catch(function(e){ showScanning(false); alert('Network error: '+e); });
+}
+
+function runScan(){
+    Promise.resolve(collectBrowserStats()).then(function(stats){
+        // update tower colors with what we have
+        if (window.IoTViz) IoTViz.pcTower(document.getElementById('pcHost'), lastMetrics);
+        submitStats(stats);
+    });
+}
+
+function runAgentScan(){
+    var err = document.getElementById('agentErr'); err.style.display='none';
+    fetch('http://127.0.0.1:8731/stats').then(function(r){ return r.json(); })
+      .then(function(agentStats){
+          // reflect into live readings + 3D
+          if (agentStats.cpu_temperature_c != null){ document.getElementById('lv-temp').textContent = agentStats.cpu_temperature_c+'°C'; lastMetrics.temp = agentStats.cpu_temperature_c; }
+          if (agentStats.ram_total_gb){ document.getElementById('lv-ram').innerHTML = fmtGB(agentStats.ram_used_gb)+' / '+agentStats.ram_total_gb; lastMetrics.ram = agentStats.ram_used_percent; }
+          if (agentStats.disk_free_percent != null){ document.getElementById('lv-disk').innerHTML = (100-agentStats.disk_free_percent).toFixed(0)+'<small>% used</small>'; lastMetrics.disk = 100-agentStats.disk_free_percent; }
+          if (agentStats.cpu_load_percent != null) lastMetrics.load = agentStats.cpu_load_percent;
+          if (agentStats.cpu_logical_cores) document.getElementById('lv-cores').textContent = agentStats.cpu_logical_cores;
+          if (agentStats.battery) document.getElementById('lv-batt').textContent = agentStats.battery.percent+'%';
+          if (window.IoTViz) IoTViz.pcTower(document.getElementById('pcHost'), lastMetrics);
+          submitStats(agentStats);
+      }).catch(function(){
+          err.textContent = "{% trans 'Could not reach the local agent. Make sure it is running with --serve.' %}";
+          err.style.display='block';
+      });
+}
+</script>
+{% endblock %}

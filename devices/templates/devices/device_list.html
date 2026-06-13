@@ -10,6 +10,14 @@
     <a href="{% url 'add_device' %}" class="btn btn-primary">➕ {% trans "Add Device" %}</a>
 </div>
 
+<!-- Fleet Map -->
+{% if has_map_devices %}
+<div class="card mb-16" style="padding: 0; overflow: hidden;">
+    <div class="viz-badge" style="position: static; display: inline-block; margin: 12px 0 0 14px;">🗺️ {% trans "Device Locations" %}</div>
+    <div id="fleetMap" class="map-host" style="margin-top: 8px;"></div>
+</div>
+{% endif %}
+
 <!-- Filters -->
 <div class="card mb-16" style="padding: 16px;">
     <form method="get" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
@@ -82,4 +90,13 @@
     </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    var devices = {{ map_devices_json|safe }};
+    if (window.IoTMap && devices.length) IoTMap.render('fleetMap', devices);
+})();
+</script>
 {% endblock %}

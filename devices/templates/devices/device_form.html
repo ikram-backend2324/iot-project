@@ -10,7 +10,7 @@
     <a href="{% url 'device_list' %}" class="btn btn-secondary">← {% trans "Back" %}</a>
 </div>
 
-<div class="card" style="max-width: 640px;">
+<div class="card" style="max-width: 760px;">
     <form method="post">
         {% csrf_token %}
         <div class="grid-2">
@@ -24,16 +24,28 @@
                 {{ form.device_type }}
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-label">{% trans "Location" %}</label>
+            {{ form.location }}
+        </div>
         <div class="grid-2">
             <div class="form-group">
-                <label class="form-label">{% trans "Location" %}</label>
-                {{ form.location }}
+                <label class="form-label">{% trans "Latitude" %}</label>
+                {{ form.latitude }}
             </div>
             <div class="form-group">
-                <label class="form-label">{% trans "IP Address" %}</label>
-                {{ form.ip_address }}
-                {% if form.ip_address.errors %}<ul class="errorlist">{% for e in form.ip_address.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+                <label class="form-label">{% trans "Longitude" %}</label>
+                {{ form.longitude }}
             </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">{% trans "Pick on map (click to set coordinates)" %}</label>
+            <div id="pickMap" class="map-host" style="height: 260px;"></div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">{% trans "IP Address" %}</label>
+            {{ form.ip_address }}
+            {% if form.ip_address.errors %}<ul class="errorlist">{% for e in form.ip_address.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
         </div>
         <div class="form-group">
             <label class="form-label">{% trans "Status" %}</label>
@@ -53,4 +65,33 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    if (!window.L) return;
+    var latInput = document.getElementById('id_latitude');
+    var lngInput = document.getElementById('id_longitude');
+    var startLat = parseFloat(latInput.value) || 41.3111;
+    var startLng = parseFloat(lngInput.value) || 69.2797;
+    var hasInitial = latInput.value && lngInput.value;
+
+    var map = L.map('pickMap', { scrollWheelZoom: false }).setView([startLat, startLng], hasInitial ? 12 : 6);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19, attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(map);
+
+    var marker = null;
+    function place(lat, lng){
+        if (marker) marker.setLatLng([lat, lng]);
+        else marker = L.marker([lat, lng]).addTo(map);
+        latInput.value = lat.toFixed(6);
+        lngInput.value = lng.toFixed(6);
+    }
+    if (hasInitial) place(startLat, startLng);
+    map.on('click', function(e){ place(e.latlng.lat, e.latlng.lng); });
+    setTimeout(function(){ map.invalidateSize(); }, 200);
+})();
+</script>
 {% endblock %}

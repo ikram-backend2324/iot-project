@@ -65,6 +65,32 @@
 </div>
 
 <div class="grid-2">
+    <!-- 3D Device Model -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <div class="viz-host" id="deviceModelHost">
+            <div class="viz-badge">{% trans "3D Model — drag to rotate" %}</div>
+            <div class="viz-legend">
+                <span><i class="badge-dot" style="background: var(--status-{{ device.status }}, #4a5568)"></i>{{ device.get_status_display }}</span>
+                <span style="color: var(--text-muted)">{{ device.get_device_type_display }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Map -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+        {% if device.latitude and device.longitude %}
+        <div id="deviceMap" style="height: 100%; min-height: 300px;"></div>
+        {% else %}
+        <div class="empty-state" style="padding: 50px 16px;">
+            <div class="empty-icon">🗺️</div>
+            <p>{% trans "No location coordinates set." %}</p>
+            <a href="{% url 'edit_device' device.pk %}" class="btn btn-secondary btn-sm mt-16">{% trans "Add coordinates" %}</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="grid-2 mt-16">
     <!-- Metrics Charts -->
     <div class="card">
         <div class="card-title">📈 {% trans "Metric Charts" %}</div>
@@ -153,10 +179,23 @@
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
+// 3D device model + location map
+(function(){
+    var device = {{ device_json|safe }};
+    if (window.IoTViz) IoTViz.deviceModel(document.getElementById('deviceModelHost'), device);
+    if (window.IoTMap && device.lat != null && device.lng != null) {
+        IoTMap.render('deviceMap', [{
+            name: device.name, type: device.type,
+            status: device.status, status_label: device.status,
+            lat: device.lat, lng: device.lng, location: device.location
+        }], { zoom: 12 });
+    }
+})();
+
 Chart.defaults.color = '#8899aa';
 Chart.defaults.borderColor = '#1e293b';
 
-const chartData = {{ chart_metrics|safe }};
+const chartData = {{ chart_metrics_json|safe }};
 let idx = 1;
 
 for (const [metricName, data] of Object.entries(chartData)) {

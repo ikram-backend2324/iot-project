@@ -1,0 +1,97 @@
+{% extends "devices/base.html" %}
+{% load i18n analysis_extras %}
+
+{% block title %}{% trans "PC Diagnosis" %} — IoT Analyzer{% endblock %}
+{% block page_title %}{% trans "PC Diagnosis" %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% trans "PC" %} <span>{% trans "Diagnosis" %}</span></h1>
+    <a href="{% url 'pc_check' %}" class="btn btn-secondary">← {% trans "Run another check" %}</a>
+</div>
+
+<div class="analysis-meta">
+    <div class="meta-item"><div class="meta-label">{% trans "Date" %}</div><div class="meta-value text-mono">{{ record.analyzed_at|date:"d/m/Y H:i" }}</div></div>
+    <div class="meta-item"><div class="meta-label">{% trans "Language" %}</div><div class="meta-value">{{ record.language|upper }}</div></div>
+    <div class="meta-item"><div class="meta-label">{% trans "Risk" %}</div><div class="meta-value">{{ record.scores.risk|default:"—" }}</div></div>
+</div>
+
+<div class="grid-2 mb-16">
+    <!-- 3D tower reflecting collected stats -->
+    <div class="card" style="padding:0; overflow:hidden;">
+        <div class="viz-host" id="pcHost">
+            <div class="viz-badge">{% trans "Your System" %}</div>
+        </div>
+    </div>
+    <!-- Collected raw stats -->
+    <div class="card">
+        <div class="card-title">📋 {% trans "Collected Data" %}</div>
+        <div class="table-wrap">
+            <table id="statsTable"><tbody></tbody></table>
+        </div>
+    </div>
+</div>
+
+{% if record.scores %}
+<div class="card mb-16">
+    <div class="card-title">📊 {% trans "Health Scorecard" %}</div>
+    <div class="score-grid" id="scoreGrid"></div>
+</div>
+{% endif %}
+
+<div class="card">
+    <div class="card-title">🧠 {% trans "Diagnosis & Recommendations" %}</div>
+    <div class="an-doc">{{ record.result|render_analysis }}</div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    var scores = {{ scores_json|safe }};
+    var stats = {{ stats_json|safe }};
+
+    // 3D tower
+    var metrics = {
+        temp: stats.cpu_temperature_c != null ? stats.cpu_temperature_c : null,
+        ram: stats.ram_used_percent != null ? stats.ram_used_percent : 55,
+        disk: stats.disk_free_percent != null ? (100 - stats.disk_free_percent) : null,
+        load: stats.cpu_load_percent != null ? stats.cpu_load_percent : 25
+    };
+    if (window.IoTViz) IoTViz.pcTower(document.getElementById('pcHost'), metrics);
+
+    // stats table
+    var tb = document.querySelector('#statsTable tbody');
+    var pretty = {
+        os:'OS', processor:'Processor', cpu_logical_cores:'CPU cores', cpu_physical_cores:'Physical cores',
+        cpu_load_percent:'CPU load %', cpu_temperature_c:'CPU temp °C',
+        ram_total_gb:'RAM total GB', ram_used_gb:'RAM used GB', ram_used_percent:'RAM used %',
+        ram_estimate_gb:'RAM (est) GB', disk_total_gb:'Disk total GB', disk_free_gb:'Disk free GB',
+        disk_free_percent:'Disk free %', gpu:'GPU', network_type:'Network', downlink_mbps:'Downlink Mbps',
+        battery_percent:'Battery %', storage_quota_gb:'Storage quota GB', platform:'Platform'
+    };
+    Object.keys(pretty).forEach(function(k){
+        if (stats[k] == null) return;
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>'+pretty[k]+'</td><td class="text-mono" style="color:var(--accent-cyan)">'+stats[k]+'</td>';
+        tb.appendChild(tr);
+    });
+    if (!tb.children.length) tb.innerHTML = '<tr><td colspan="2" class="text-muted">{% trans "No data" %}</td></tr>';
+
+    // scorecard
+    var grid = document.getElementById('scoreGrid');
+    if (grid && scores){
+        var labels = { health:"{% trans 'Health' %}", performance:"{% trans 'Performance' %}",
+            reliability:"{% trans 'Reliability' %}", efficiency:"{% trans 'Efficiency' %}", security:"{% trans 'Security' %}" };
+        ['health','performance','reliability','efficiency','security'].forEach(function(k){
+            if (scores[k]==null) return;
+            var c=document.createElement('div'); c.className='score-card';
+            c.innerHTML='<div class="score-top"><span class="score-name">'+labels[k]+'</span><span class="score-val">'+scores[k]+'</span></div>'+
+                '<div class="score-track"><div class="score-fill" data-val="'+scores[k]+'"></div></div>';
+            grid.appendChild(c);
+        });
+        if (window.IoTViz) IoTViz.animateScores(grid);
+    }
+})();
+</script>
+{% endblock %}
